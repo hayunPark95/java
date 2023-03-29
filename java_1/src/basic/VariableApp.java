@@ -43,12 +43,18 @@ public class VariableApp {
 		System.out.println("=========================================");
 		
 		int num1=100, num2=200;
+		System.out.println("=========================================");
 		System.out.println("연산결과 = "+(num1+num2));
 		System.out.println("연산결과 = "+num1+num2);
 		System.out.println("연산결과 = "+num1*num2);
 		System.out.println("연산결과 = "+(num1*num2));
-
-	
+		System.out.println("=========================================");
+		int kor=88, eng=90;
+		int tot=kor+eng;
+		int sub=2;
+		System.out.println("점수 합계 = "+tot);
+		System.out.println("=========================================");
+		System.out.println("점수 평균 ="+tot/sub);
 	}
 }
 
