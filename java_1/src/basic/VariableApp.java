@@ -27,6 +27,27 @@ public class VariableApp {
 		System.out.print("초기값 = ");
 		System.out.println(su);//변수에 저장된 값을 화면에 출력
 		
+		su=200;
+		System.out.print("변경값 = ");
+		System.out.println(su);
+		
+		System.out.println("=========================================");
+		
+		int num=100;
+		
+		System.out.println("num = "+num);
+		System.out.println("=========================================");
+		System.out.println("올해는 "+2+0+2+3+"년입니다.");
+		System.out.println(""+2+0+2+3+"년은 토끼띠해입니다");
+		System.out.println("2022년은 작년입니다");
+		System.out.println("=========================================");
+		
+		int num1=100, num2=200;
+		System.out.println("연산결과 = "+(num1+num2));
+		System.out.println("연산결과 = "+num1+num2);
+		System.out.println("연산결과 = "+num1*num2);
+		System.out.println("연산결과 = "+(num1*num2));
+
 	
 	}
 }
