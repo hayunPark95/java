@@ -55,6 +55,14 @@ public class VariableApp {
 		int tot=kor+eng;//연산 결과를 변수에 저장
 		System.out.println("점수 합계 = "+tot);
 		System.out.println("==============================================================");
+		//변수의 값이 저장되어 있지 않은 상태에서 변수를 사용할 경우 에러 발생 =로 값을 지정을 해줘야 함
+		//int count;
+		//System.out.println("count = "+count);
+		//변수에 저장 불가능한 값을 저장할 경우 에러 발생
+		//int count = 2.2; - 이거는 int 변수가아니라 double 변수임
+		//System.out.println("count = "+count);
+		
+		
 	}
 }
 
