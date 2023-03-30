@@ -34,5 +34,7 @@ public class Practice1 {
 		String name="임꺽정";
 		System.out.println("이름 = "+name);
 		
+		System.out.println("너무 더워 개열받네");
+		
 	}
 }
