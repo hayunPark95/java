@@ -25,5 +25,14 @@ public class Practice1 {
 
 		System.out.println("d1 = "+d1);
 		System.out.println("d2 = "+d2);
+		
+		
+		System.out.println("<<문자열(StringType)>>");
+		System.out.println("문자열 = "+"홍길동");
+		System.out.println("문자열 = "+"유관순 열사가\"대한독립 만세\"를 외쳤습니다.");
+		
+		String name="임꺽정";
+		System.out.println("이름 = "+name);
+		
 	}
 }
