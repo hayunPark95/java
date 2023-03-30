@@ -18,12 +18,12 @@ public class OperatorExample {
 		//단, 15대 이상 구매할 경우 1대당 25%의 할인율을 적용하여 계산하세요.
 		//삼항연산자 ,Long 변수 사용
 		int airplane=150_000_000;
-		int buyer=20;
+		int buyer=10;
 		double salePercent=0.75;
 		long sale=(long)(airplane*salePercent*buyer);
 		
 		
-		System.out.println("할인가능여부"+(buyer>=15));
+		System.out.println("할인가능여부"+(buyer>=15?"가능":"불가능"));
 		System.out.println("구매희망수량 = "+buyer);
 		System.out.println("할인이 적용된 가격 = "+sale+"원");
 		
