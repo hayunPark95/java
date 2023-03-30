@@ -17,5 +17,13 @@ public class Practice1 {
 		
 		char c4=45000;
 		System.out.println(c4);
+		
+		
+		
+		boolean d1=false;
+		boolean d2=20>10;
+
+		System.out.println("d1 = "+d1);
+		System.out.println("d2 = "+d2);
 	}
 }
