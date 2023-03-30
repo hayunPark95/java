@@ -15,6 +15,7 @@ public class Practice1 {
 		System.out.println(3<2);
 		System.out.println(3<-3);
 		
-		
+		char c4=45000;
+		System.out.println(c4);
 	}
 }
