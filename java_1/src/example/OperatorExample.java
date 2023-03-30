@@ -25,7 +25,7 @@ public class OperatorExample {
 		
 		System.out.println("할인가능여부"+(buyer>=15?"ㄱㄴ":"ㅂㄱㄴ"));
 		System.out.println("구매희망수량 = "+buyer);
-		System.out.println("할인이 적용된 가격 = " +(buyer>=15?(long)(airplane*salePercent*buyer):(long)(airplane*buyer)));
+		System.out.println("최종가격 = " +(buyer>=15?(long)(airplane*salePercent*buyer):(long)(airplane*buyer)));
 		
 		
 		
