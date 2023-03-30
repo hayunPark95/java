@@ -34,7 +34,7 @@ public class DataTypeApp {
 		System.out.println("실수값(4Byte) = "+12.3F);
 		System.out.println("실수값(8byte) = "+12.3);
 		
-		System.out.println("실수값(8byte) = "+0.000000000123);//실수값 .. 8byte 실수형 리터럴(DoubleType)
+		System.out.println("실수값(8byte) = "+0.000000000123);
 		System.out.println("실수값(8Byte) = "+1.23E+10);
 		
 		

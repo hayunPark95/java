@@ -30,7 +30,7 @@ public class VariableApp {
 		System.out.println("==============================================================");
 		int kor=88,eng=90;
 		
-		int tot=kor+eng;//연산 결과를 변수에 저장
+		int tot=kor+eng;
 		System.out.println("점수 합계 = "+tot);
 		System.out.println("==============================================================");
 		
