@@ -15,5 +15,6 @@ public class Practice1 {
 		System.out.println(3<2);
 		System.out.println(3<-3);
 		
+		
 	}
 }
