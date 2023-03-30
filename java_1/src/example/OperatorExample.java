@@ -10,6 +10,7 @@ public class OperatorExample {
 		int min=(totSec-day*60*60*24-hour*3600)/(60);
 		int sec=totSec%60;
 		
+		System.out.print("잔여시간은");
 		System.out.println(day+"일"+hour+"시간"+min+"분"+sec+"초");
 
 		System.out.println("===============================================");
@@ -20,6 +21,7 @@ public class OperatorExample {
 		int buyer=20;
 		double salePercent=0.75;
 		long sale=(long)(airplane*salePercent*buyer);
+		
 		
 		System.out.println("할인가능여부"+(buyer>=15));
 		System.out.println("구매희망수량 = "+buyer);
