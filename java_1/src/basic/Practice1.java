@@ -19,6 +19,9 @@ public class Practice1 {
 		System.out.println(c4);
 		
 		float vv=1.23456f;
+		char bbb='\n';
+		
+		System.out.println(bbb);
 		
 		boolean d1=false;
 		boolean d2=20>10;

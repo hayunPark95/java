@@ -39,6 +39,8 @@ public class OperatorApp {
 		//하나의 연산식으로 구현된 단일 명령인 경우 연산자의 위치는 연산결과에 미영향
 		a2++;
 		a3--;
+		double aa=100.0;
+		System.out.println("aa = "+aa--);
 		
 		System.out.println("a2 = "+a2+", a3 = "+a3);
 		System.out.println("==============================================================");
