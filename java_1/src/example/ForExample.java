@@ -56,9 +56,10 @@ public class ForExample {
 		//    50    51    52     53     54     55     56
 		//    57
 		int begin=36, end=57;
+		int j=1;
 		for(int i=begin;i<=end;i++) {
-			System.out.println();
-			System.out.println();
+			System.out.print(i+"   ");
+			System.out.println("   ");
 		}
 		System.out.println("=========================================");	
 	}
