@@ -18,7 +18,7 @@ public class Practice1 {
 		char c4=45000;
 		System.out.println(c4);
 		
-		
+		float vv=1.23456f;
 		
 		boolean d1=false;
 		boolean d2=20>10;
