@@ -38,6 +38,7 @@ public class Practice1 {
 		System.out.println("이름 = "+name);
 		
 		System.out.println("너무 더워 개열받네");
+		System.out.println("토요일 7시 -> 9~10시 -> ");
 		
 	}
 }
