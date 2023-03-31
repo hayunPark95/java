@@ -32,6 +32,23 @@ public class IfApp {
 		} else {
 			System.out.println(num+">>짝수");
 		}
-
+		System.out.println("=============================================");
+		String a="졸리다";
+//		졸리면 집에간다
+		if(a=="졸리다") {
+			System.out.println("집에간다");
+		} else {
+			System.out.println("참는다");
+		}
+		System.out.println("=============================================");
+		char mun='o';
+//		문자변수에 저장된 문자값을 영문자와 비영문자로 구분하여 출려하는 프로그램을 만들 때
+//		X>=작은값 && X<=큰값 : X는 작은값부터 큰값 사이의 범위안에 표현되는 값
+		if (mun>='A' && mun<='Z' || mun>='a' && mun<='z') {
+			System.out.println("[결과]"+mun+" = 영문자");
+		} else {System.out.println("[결과]"+mun+" = 비영문자");
+		}
+		System.out.println("=============================================");
+		
 	}
 }
