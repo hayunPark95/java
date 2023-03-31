@@ -10,8 +10,8 @@ public class OperatorExample {
 		int min=(totSec-day*60*60*24-hour*3600)/(60);
 		int sec=totSec%60;
 		
-		System.out.print("잔여시간은");
-		System.out.println(day+"일"+hour+"시간"+min+"분"+sec+"초");
+		System.out.print("잔여시간은 ");
+		System.out.println(day+"일 "+hour+"시간 "+min+"분 "+sec+"초 입니다");
 
 		System.out.println("===============================================");
 		//한대의 가격이 1억 5천원만인 비행기를 20대 구매할 경우 지불해야될 금액을 계산하여 출력하세요. 
@@ -23,7 +23,7 @@ public class OperatorExample {
 		long sale=(long)(airplane*salePercent)*buyer;
 		long nonSale=(long)(airplane*buyer);
 		
-		System.out.println("할인가능여부"+(buyer>=15?"ㄱㄴ":"ㅂㄱㄴ"));
+		System.out.println("할인가능여부	"+(buyer>=15?"O":"X"));
 		System.out.println("구매희망수량 = "+buyer);
 		System.out.println("최종가격 = " +(buyer>=15?(long)(sale):(long)(nonSale)));
 		

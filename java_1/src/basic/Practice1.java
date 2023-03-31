@@ -9,6 +9,8 @@ public class Practice1 {
 		
 		System.out.println(a);
 		System.out.println(b);
+		System.out.println("b = "+!a);
+		
 		
 		System.out.println(3<4);
 		System.out.println(3==4);
@@ -18,10 +20,8 @@ public class Practice1 {
 		char c4=45000;
 		System.out.println(c4);
 		
-		float vv=1.23456f;
-		char bbb='\n';
 		
-		System.out.println(bbb);
+		
 		
 		boolean d1=false;
 		boolean d2=20>10;
