@@ -55,13 +55,27 @@ public class ForExample {
 		//    43    44    45     46     47     48     49
 		//    50    51    52     53     54     55     56
 		//    57
-		int begin=36, end=57;
+		/*int begin=36, end=57;
 		int j=1;
 		for(int i=begin;i<=end;i++) {
-			System.out.print(i+"   ");
-			System.out.println("   ");
+			String k="%d ";
+			if(j%7==0) k +="\n";
+			System.out.printf(k, i);
+			j++;
+		}*/
+		System.out.println("=========================================");
+		int beGin=36, enD=57;
+		int a=1;
+		for (int ii=beGin;ii<=enD;ii++) {
+			String b=a%7==0?" \n":"";
+			System.out.print(ii+b);
+			a++;
 		}
-		System.out.println("=========================================");	
+		System.out.println("=========================================");
+		int begin=36, end=57;
+		int j=1;
+		
+				
 	}
 }
 
