@@ -6,11 +6,11 @@ public class IfExample {
 		//단, 변수에 저장된 문자값이 소문자인 경우 대문자로 변환하여 출력하세요.
 		char mun='x';
 		if (mun>='A' && mun<='Z') {
-			System.out.println("문자값은 "+ "");
-		} else {System.out.println("");}
+			System.out.println("문자값은 "+ (mun>='A' && mun<='Z'));
+		} else {
+			System.out.println("문자값은 " + (mun>='a' && mun<='z'));}
 		System.out.println();
 		
-		System.out.println("mun = "+mun);
 		System.out.println("============================================================");
 		//변수에 저장된 정수값이 4의 배수인지 아닌지를 구분하여 출력하세요.
 		int num=345644;
