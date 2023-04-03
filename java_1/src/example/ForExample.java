@@ -4,32 +4,34 @@ public class ForExample {
 	public static void main(String[] args) {
 		//본인 이름을 화면에 7번 출력하세요.
 		//ex) 홍길동 홍길동 홍길동 홍길동 홍길동 홍길동 홍길동
-		for(int i=0;i<7;i++) {
-			System.out.println("박하윤");
+		for(int i=1;i<=7;i++) {
+			System.out.print("홍길동 ");
 		}
+		System.out.println();
 		System.out.println("=========================================");
 		//1~10 범위의 정수 중 홀수를 화면에 출력하세요.
 		//ex) 1     3     5     7     9
+		/*
+		for(int i=1;i<=9;i+=2) {
+			System.out.print(i+"\t");
+		}
+		*/
 		for(int i=1;i<=10;i++) {
-			if(i%2==1) {
-				System.out.println(i+"\t");
+			if(i%2!=0) {
+				System.out.print(i+"\t");
 			}
 		}
+		System.out.println();
 		System.out.println("=========================================");
 		//1~100 범위의 정수에서 3의 배수들의 합계와 5의 배수들의 합계를 계산하여
 		//3의 배수의 합계에서 5의 배수의 합계를 뺀 결과값을 출력하세요.
 		//ex) 결과 = 633
-		int total=0;
-		for(int i=3;i<=100;i+=3) {
-			total+=i;
+		int tot3=0, tot5=0;
+		for(int i=1;i<=100;i++) {
+			if(i%3==0) tot3+=i;
+			if(i%5==0) tot5+=i;
 		}
-		System.out.println("범위 안의 3의 배수 총 합 = "+total);
-		int total2=0;
-		for(int i2=5;i2<=100;i2+=5) {
-			total2+=i2;
-		}
-		System.out.println("범위 안의 5의 배수 총 합 = "+total2);
-		System.out.println("3의 배수 - 5의 배수 = "+(total-total2));
+		System.out.println("결과 = "+(tot3-tot5));
 		System.out.println("=========================================");
 		//구구단 중 7단을 화면에 출력하세요.
 		//ex) 7 * 1 = 7
@@ -37,17 +39,18 @@ public class ForExample {
 		//    ...
 		//    7 * 8 = 56
 		//    7 * 9 = 63
-		for(int i=7;i<70;i+=7) {
-			System.out.println(i+"\t");
+		int dan=7;
+		for(int i=1;i<=9;i++) {
+			System.out.println(dan+" * "+i+" = "+(dan*i));
 		}
 		System.out.println("=========================================");
 		//5!의 결과값을 출력하세요.(5! = 5 * 4 * 3 * 2 * 1)
 		//ex) 5! = 120
-		int tot=0;
-		for(int i=5;i>0;i--) {
-			tot+=i;
+		int num=5, fac=1;
+		for(int i=num;i>=1;i--) {
+			fac*=i;
 		}
-		System.out.println("5! = "+tot);
+		System.out.println(num+"! = "+fac);
 		System.out.println("=========================================");
 		//두 변수에 저장된 정수값 사이의 정수들을 화면에 출력하세요.
 		//단, 한 줄에 정수값이 7개씩 출력되도록 프로그램을 작성하세요.
@@ -55,28 +58,20 @@ public class ForExample {
 		//    43    44    45     46     47     48     49
 		//    50    51    52     53     54     55     56
 		//    57
-		/*int begin=36, end=57;
-		int j=1;
+		int begin=36, end=57;
+		int count=0;//출력갯수를 저장할 변수
+		
 		for(int i=begin;i<=end;i++) {
-			String k="%d ";
-			if(j%7==0) k +="\n";
-			System.out.printf(k, i);
-			j++;
-		}*/
-		System.out.println("=========================================");
-		int beGin=36, enD=57;
-		int a=1;
-		for (int ii=beGin;ii<=enD;ii++) {
-			String b=a%7==0?" \n":"";
-			System.out.print(ii+b);
-			a++;
+			System.out.print(i+"\t");
+			count++;
+			if(count%7==0) {
+				System.out.println();
+			}
 		}
-		System.out.println("=========================================");
-				
+		System.out.println();
+		System.out.println("=========================================");	
 	}
 }
-
-
 
 
 
