@@ -15,13 +15,11 @@ public class TotalTwoExample {
 		System.out.println("정수값을 입력하시오");
 		int tot=0;
 		int a=scanner.nextInt();
-		while(a==0){
-			
-			tot+=a;
-			break;
-		}
-		System.out.println("합계"+tot);
-	}
+			while(a==0){
+				tot+=a;
+				System.out.println("합계"+tot);
+			}
+	} 
 }
 
 
