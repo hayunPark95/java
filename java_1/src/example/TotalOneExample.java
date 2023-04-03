@@ -13,10 +13,18 @@ public class TotalOneExample {
 	public static void main(String[] args) {
 		Scanner scanner=new Scanner(System.in);
 		
-		System.out.println("정수값을 입력하세요>>");
-		int a=scanner.nextInt();
-
-	}
+		System.out.println("정수값을 5번 입력하세요");
+		int tot=0;		
+		for(int i=1;i<=5;i++) {
+			int a=scanner.nextInt();
+			tot+=a;
+			if(i==5) break;
+			System.out.println("다시입력");
+			
+			
+		}
+		System.out.println("합계"+tot);		
+		}
 }
 
 

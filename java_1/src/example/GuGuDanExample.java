@@ -12,22 +12,20 @@ import java.util.Scanner;
 public class GuGuDanExample {
 	public static void main(String[] args) {
 		Scanner scanner=new Scanner(System.in);
-		int num;
+		int num=0;
 		while(true) {
 			System.out.print("2~9범위의 정수값 입력 >>");
 			num=scanner.nextInt();
 			if(num>=2 && num<=9) break;
-			System.out.println("[에러]2~9 범위의 정수만 입력하시오");
+			System.out.println("[에러] 숫자 다시 입력");
 		}
-		int ans=0;
+		
 		for(int i=1;i<=9;i++) {
-			for(int j=ans;j<=1;j+=0) {
-				System.out.print(j+"*"+i+"="+(j*i)+"=\t");
-			}
+			System.out.println(num+"*"+i+"= "+(num*i));
 		}
-		System.out.println();
 	}
 }
+
 
 
 
