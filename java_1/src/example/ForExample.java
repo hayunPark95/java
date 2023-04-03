@@ -72,9 +72,6 @@ public class ForExample {
 			a++;
 		}
 		System.out.println("=========================================");
-		int begin=36, end=57;
-		int j=1;
-		
 				
 	}
 }
