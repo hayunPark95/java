@@ -9,7 +9,7 @@ import java.util.Scanner;
 //    정수값 입력[0:종료] >> 30
 //    정수값 입력[0:종료] >> 0
 //    [결과]합계 = 60
-public class TotalTwoExample {
+public class TotalTwoExample_2 {
 	public static void main(String[] args) {
 		
 	Scanner scanner = new Scanner(System.in);
@@ -19,21 +19,12 @@ public class TotalTwoExample {
 	while(number!=0) {
 		 System.out.print("정수값 입력 [0:종료] >>");
 	      number = scanner.nextInt();
+	      total+=number;
 	      if(number<0) {
-	         System.out.println("[오류] 0이상의 정수만 입력하시오>>"+number);
+	         System.out.println("[음수 입력]합계에서 -처리 됩니다>>"+number);
 	         continue;
 	      }
-	     total+=number;
 	   }
 	   System.out.println("[결과] 합계 : "+total);
 	   }   
 }
-
-
-
-
-
-
-
-
-
