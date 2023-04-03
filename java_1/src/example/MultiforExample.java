@@ -61,8 +61,6 @@ public class MultiforExample {
 			}
 			System.out.println();
 		}
-
-		
 		System.out.println("===============================================================");
 	}
 }
