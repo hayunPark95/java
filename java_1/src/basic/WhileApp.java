@@ -21,7 +21,7 @@ public class WhileApp {
 			gae*=2;
 		}
 		
-		System.out.println(cnt+"번 접으면 "+gae+"개의 사격형이 만들어집니다.");
+		System.out.println(cnt+"번 접으면 "+gae+"개의 사각형이 만들어집니다.");
 		System.out.println("=============================================");
 		int k=0, total=0;
 		while(total<300 ) {
