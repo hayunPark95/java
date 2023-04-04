@@ -20,7 +20,7 @@ public class TotalTwoExample_3 {
       System.out.print("정수값 입력 [0:종료] >>");
       number = scanner.nextInt();
       if(number<0) {
-         System.out.println("[음수입력]0미만의 정수 입력시 -처리됩니다3 >>"+number);
+         System.out.println("[음수입력]0미만의 정수 입력시 -처리됩니다 >>"+number);
       }
      total+=number;
      if(number == 0){
