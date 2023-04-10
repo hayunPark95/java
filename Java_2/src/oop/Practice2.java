@@ -17,8 +17,9 @@ public class Practice2 {
 			}
 			System.out.println();
 			
-			
-			
+			System.out.println("=============================================");
+		
+		System.out.println(+(int)Math.random()+1);
 		}
 	}
 }
