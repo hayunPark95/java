@@ -11,6 +11,8 @@ public class MemberCastApp {
 		member1.setId("abc123");
 		member1.setName("홍길동");
 		
+		System.out.println("Hello World");
+		
 		member1.display();
 		System.out.println("==============================================================");
 		//자식클래스 참조변수=new 자식클래스();
