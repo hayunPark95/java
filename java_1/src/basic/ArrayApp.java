@@ -1,4 +1,4 @@
-package basic;
+package basic; 
 
 //Java 자료형 : 원시형(PrimitiveType)과 참조형(ReferenceType)
 // => 원시형 : 값을 표현하기 위한 자료형 - byte, short, int, long, char, float, double, boolean 
