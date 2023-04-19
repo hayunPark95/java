@@ -9,6 +9,7 @@ import java.util.Scanner;
 // => 형식에 맞지 않는 연산식이 입력된 경우 에러 메세지 출력 후 프로그램 종료
 // => 입력 연산식에 공백 입력이 가능하도록 처리
 public class ConsoleCalculateApp {
+	@SuppressWarnings("resource")
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		String number;
