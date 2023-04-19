@@ -14,7 +14,7 @@ public class ConsoleCalculateApp_SplitVersion {
 		String number;
 		String numberTrim;
 		
-
+ 
 	
 		int result =0;
 		
