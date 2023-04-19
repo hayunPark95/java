@@ -17,6 +17,8 @@ public class ConsoleCalculateAppAnswer {
 		String operation=scanner.nextLine().replace(" ", "");
 		//System.out.println("operation = "+operation);
 		
+		scanner.close();
+		
 		//연산식에서 검색할 연산자가 저장된 문자열 배열 선언
 		String[] operatorArray={"*", "/", "+", "-"};
 		
@@ -33,11 +35,11 @@ public class ConsoleCalculateAppAnswer {
 		}
 		
 		//연산자가 없거나 연산자가 잘못된 위치에 있는 경우
-		if(index <= 0 || index > operation.length()-1) {
+		if(index <= 0 || index >= operation.length()-1) {
 			System.out.println("[에러]연산식을 잘못 입력 하였습니다.");
 			System.exit(0);
 		}
-		scanner.close();
+
 		try {
 			//첫번째 피연산자를 분리하여 정수값으로 변환하여 저장
 			// => Integer.parseInt(String str) 메소드 호출시 NumberFormatException 발생 가능
