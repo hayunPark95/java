@@ -13,7 +13,7 @@ public class ConsoleCalculateApp_SplitVersion {
 		Scanner scanner = new Scanner(System.in);
 		String number;
 		String numberTrim;
-		
+		 
  
 	
 		int result =0;
