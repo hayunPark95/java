@@ -12,27 +12,16 @@ import java.util.Scanner;
 public class TotalOneExample {
 	public static void main(String[] args) {
 		Scanner scanner=new Scanner(System.in);
-		
-		System.out.println("정수값을 5번 입력하세요");
-		int tot=0;		
+
+		int tot=0;
 		for(int i=1;i<=5;i++) {
-			int a=scanner.nextInt();
-			tot+=a;
-			if(i==5) break;
-			System.out.println("다시입력");
-			
-			
+			System.out.print(i+"번째 정수값 입력 >> ");
+			int num=scanner.nextInt();
+			tot+=num;//입력값을 tot 변수에 누적하여 저장
 		}
-		System.out.println("합계"+tot);		
-		}
+		
+		System.out.println("[결과]합계 = "+tot);
+		
+		scanner.close();
+	}
 }
-
-
-
-
-
-
-
-
-
-

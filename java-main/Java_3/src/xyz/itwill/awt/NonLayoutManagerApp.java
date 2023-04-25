@@ -38,3 +38,12 @@ public class NonLayoutManagerApp extends Frame {
 		new NonLayoutManagerApp("배치관리자 미사용");
 	}
 }
+
+
+
+
+
+
+
+
+

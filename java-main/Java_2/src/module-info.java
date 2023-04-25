@@ -1,3 +1,3 @@
-module Java_2 {
+module java_2 {
 	requires java.se;
 }

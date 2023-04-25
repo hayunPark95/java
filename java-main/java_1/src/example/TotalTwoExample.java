@@ -11,20 +11,18 @@ import java.util.Scanner;
 //    [결과]합계 = 60
 public class TotalTwoExample {
 	public static void main(String[] args) {
+		Scanner scanner=new Scanner(System.in);
+
+		int tot=0;
+		while(true) {
+			System.out.print("정수값 입력[0:종료] >> ");
+			int num=scanner.nextInt();
+			if(num==0) break;//입력값이 [0]인 경우 반복문 종료
+			tot+=num;
+		}
 		
-	Scanner scanner = new Scanner(System.in);
-	
-	int total = 0;
-	int number = 1;
-	while(number!=0) {
-		 System.out.print("정수값 입력 [0:종료] >>");
-	      number = scanner.nextInt();
-	      if(number<0) {
-	         System.out.println("[오류] 0이상의 정수만 입력하시오>>"+number);
-	         continue;
-	      }
-	     total+=number;
-	   }
-	   System.out.println("[결과] 합계 : "+total);
-	   }   
+		System.out.println("[결과]합계 = "+tot);
+		
+		scanner.close();
+	}
 }

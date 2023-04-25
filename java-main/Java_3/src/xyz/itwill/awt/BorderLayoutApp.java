@@ -6,6 +6,7 @@ import java.awt.Frame;
 
 //BorderLayout 클래스 : 컨테이너를 중앙, 동, 서, 남, 북으로 구분하여 컴퍼넌트를 배치하는 배치관리자
 // => 컴퍼넌트를 배치할 때 반드시 배치위치를 제공
+// => Frame, Window, Dialog 등의 컨테이너의 기본 배치관리자
 public class BorderLayoutApp extends Frame {
 	private static final long serialVersionUID = 1L;
 
@@ -13,7 +14,7 @@ public class BorderLayoutApp extends Frame {
 		super(title);
 		
 		//프레임의 배치관리자를 [BorderLayout]으로 변경
-		// => Frame의 기본 배치관리자는 [BorderLayout]이므로 생략 가능
+		// => Frame의 기본 배치관리자는 [BorderLayout]이므로 배치관리자 변경 생략 가능
 		//setLayout(new BorderLayout());
 		
 		Button button1=new Button("Center");

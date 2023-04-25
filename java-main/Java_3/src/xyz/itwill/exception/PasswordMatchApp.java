@@ -38,7 +38,7 @@ public class PasswordMatchApp {
 				//PasswordMismatchException 클래스는 개발자가 직접 생성한 예외클래스로 
 				//예외처리를 하지 않을 경우 에러 발생 - 일반 예외
 				// => 예외가 발생되면 catch 구문으로 프로그램의 흐름이 이동
-				throw new PasswordMissmatchException("[결과]입력된 비밀번호가 틀림니다.");
+				throw new PasswordMismatchException("[결과]입력된 비밀번호가 틀림니다.");
 			}
 			
 			//예외가 발생되지 않은 경우 실행될 명령
@@ -46,7 +46,7 @@ public class PasswordMatchApp {
 
 		} catch (InputMismatchException e) {
 			System.out.println("[에러]숫자만 입력 가능합니다.");
-		} catch (PasswordMissmatchException e) {
+		} catch (PasswordMismatchException e) {
 			System.out.println(e.getMessage());
 		} catch (Exception e) {
 			System.out.println("[에러]프로그램에 예기치 못한 오류가 발생되었습니다.");

@@ -1,5 +1,5 @@
 package enumerate;
 
 public enum EnumTwo {
-	ADD,MODIFY,REMOVE,SEARCH;
+	ADD, MODIFY, REMOVE, SEARCH;
 }
