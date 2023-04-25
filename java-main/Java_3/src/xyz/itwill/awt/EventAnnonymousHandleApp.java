@@ -9,10 +9,10 @@ import java.awt.event.ActionListener;
 
 //[EXIT] 버튼을 누른 경우 프로그램을 종료하는 기능의 프로그램 작성
 // => 이벤트 처리 클래스를 익명의 내부클래스(Anonymous InnerClass)로 작성
-public class EventAnnoymousHandleApp extends Frame {
+public class EventAnnonymousHandleApp extends Frame {
 	private static final long serialVersionUID = 1L;
 	
-	public EventAnnoymousHandleApp(String title) {
+	public EventAnnonymousHandleApp(String title) {
 		super(title);
 		
 		setLayout(new FlowLayout());
@@ -33,6 +33,6 @@ public class EventAnnoymousHandleApp extends Frame {
 	}
 	
 	public static void main(String[] args) {
-		new EventAnnoymousHandleApp("이벤트처리");
+		new EventAnnonymousHandleApp("이벤트처리");
 	}
 }

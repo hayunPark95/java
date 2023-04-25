@@ -50,7 +50,7 @@ public class EventHandleApp extends Frame {
 		setBounds(800, 200, 300, 300);
 		setVisible(true);
 	}
-	
+	 
 	public static void main(String[] args) {
 		new EventHandleApp("이벤트처리");
 	}
