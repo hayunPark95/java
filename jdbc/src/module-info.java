@@ -5,5 +5,6 @@
  * @author user
  *
  */
-module oracle {
+module jdbc {
+	requires java.se;
 }
