@@ -12,7 +12,6 @@ public class ProjectDAOImpl extends DAO implements ProjectDAOInterface {
 	private static ProjectDAOImpl _dao;
 	
 	private ProjectDAOImpl() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	static {
@@ -23,7 +22,6 @@ public class ProjectDAOImpl extends DAO implements ProjectDAOInterface {
 		return _dao;
 	}
 	
-	//학생정보를 전달받아 STUDENT 테이블에 삽입하고 삽입행의 갯수를 반환하는 메소드
 	@Override
 	public int insertProject(ProjectDTO project) {
 		Connection con=null;
@@ -36,9 +34,9 @@ public class ProjectDAOImpl extends DAO implements ProjectDAOInterface {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, project.getName());
 			pstmt.setString(2, project.getGender());
-			pstmt.setInt(3, project.getMem());
+			pstmt.setString(3, project.getMem());
 			pstmt.setString(4, project.getSong());
-			pstmt.setInt(5, project.getAgency());
+			pstmt.setString(5, project.getAgency());
 			
 			rows=pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -60,9 +58,9 @@ public class ProjectDAOImpl extends DAO implements ProjectDAOInterface {
 			String sql="update idol set gender=?,mem=?,song=?,agency=?, where name=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, project.getGender());
-			pstmt.setInt(2, project.getMem());
+			pstmt.setString(2, project.getMem());
 			pstmt.setString(3, project.getSong());
-			pstmt.setInt(4, project.getAgency());
+			pstmt.setString(4, project.getAgency());
 			pstmt.setString(5, project.getName());
 
 			rows=pstmt.executeUpdate();
@@ -115,9 +113,9 @@ public class ProjectDAOImpl extends DAO implements ProjectDAOInterface {
 				//처리행의 컬럼값을 반환받아 DTO 객체의 필드값으로 변경
 				project.setName(rs.getString("name"));
 				project.setGender(rs.getString("gender"));
-				project.setMem(rs.getInt("mem"));
+				project.setMem(rs.getString("mem"));
 				project.setSong(rs.getString("song"));
-				project.setAgency(rs.getInt("agency"));
+				project.setAgency(rs.getString("agency"));
 			}
 		} catch (SQLException e) {
 			System.out.println("[에러]selectIdol() 메소드의 SQL 오류 = "+e.getMessage());
@@ -128,7 +126,6 @@ public class ProjectDAOImpl extends DAO implements ProjectDAOInterface {
 		return project;
 	}
 
-	//이름을 전달받아 STUDENT 테이블에 저장된 해당 이름의 학생정보를 검색하여 반환하는 메소드
 	@Override
 	public List<ProjectDTO> selectNameProjectList(String name) {
 		Connection con=null;
@@ -150,9 +147,9 @@ public class ProjectDAOImpl extends DAO implements ProjectDAOInterface {
 				ProjectDTO project=new ProjectDTO();
 				project.setName(rs.getString("name"));
 				project.setGender(rs.getString("gender"));
-				project.setMem(rs.getInt("mem"));
+				project.setMem(rs.getString("mem"));
 				project.setSong(rs.getString("song"));
-				project.setAgency(rs.getInt("agency"));
+				project.setAgency(rs.getString("agency"));
 				
 				//DTO 객체를 List 객체의 요소로 추가 
 				projectList.add(project);
@@ -165,7 +162,7 @@ public class ProjectDAOImpl extends DAO implements ProjectDAOInterface {
 		return projectList;
 	}
 
-	//STUDENT 테이블에 저장된 모든 학생정보를 검색하여 반환하는 메소드
+
 	@Override
 	public List<ProjectDTO> selectAllProjectList() {
 		Connection con=null;
@@ -184,9 +181,9 @@ public class ProjectDAOImpl extends DAO implements ProjectDAOInterface {
 				ProjectDTO project=new ProjectDTO();
 				project.setName(rs.getString("name"));
 				project.setGender(rs.getString("gender"));
-				project.setMem(rs.getInt("mem"));
+				project.setMem(rs.getString("mem"));
 				project.setSong(rs.getString("song"));
-				project.setAgency(rs.getInt("agency"));
+				project.setAgency(rs.getString("agency"));
 				
 				projectList.add(project);
 			}
