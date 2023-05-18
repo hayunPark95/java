@@ -134,11 +134,11 @@ public class ProjectDAOImpl extends DAO implements ProjectDAOInterface {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		List<ProjectDTO> studentList=new ArrayList<>();
+		List<ProjectDTO> projectList=new ArrayList<>();
 		try {
 			con=getConnection();
 			
-			String sql="select * from student where name=? order by no";
+			String sql="select * from project where name=? order by name";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, name);
 			
@@ -155,14 +155,14 @@ public class ProjectDAOImpl extends DAO implements ProjectDAOInterface {
 				project.setAgency(rs.getInt("agency"));
 				
 				//DTO 객체를 List 객체의 요소로 추가 
-				studentList.add(project);
+				projectList.add(project);
 			}
 		} catch (SQLException e) {
-			System.out.println("[에러]selectNameStudentList() 메소드의 SQL 오류 = "+e.getMessage());
+			System.out.println("[에러]selectNameProjectList() 메소드의 SQL 오류 = "+e.getMessage());
 		} finally {
 			close(con, pstmt, rs);
 		}
-		return studentList;
+		return projectList;
 	}
 
 	//STUDENT 테이블에 저장된 모든 학생정보를 검색하여 반환하는 메소드
