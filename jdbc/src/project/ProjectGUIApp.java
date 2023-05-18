@@ -315,7 +315,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			return;
 		}
 		
-		String nameReg="^[가-힣]{1,8}$/";
+		String nameReg="^[가-힣]+$/";
 		if(!Pattern.matches(nameReg, nameTemp)) {//정규표현식과 입력값의 입력패턴이 다른 경우
 			JOptionPane.showMessageDialog(this, "제대로된 이름을 입력해 주세요.");
 			nameTF.requestFocus();
@@ -338,7 +338,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			return;	
 		}
 		
-		String genderReg="^[남]||[녀]{1}$";
+		String genderReg="^[남]|[녀]{1}$";
 		if(!Pattern.matches(genderReg, gender)) {
 			JOptionPane.showMessageDialog(this, "성별은 반드시 남 또는 녀로 입력해 주세요.");
 			genderTF.requestFocus();
@@ -377,7 +377,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			return;
 		}
 		
-		String agencyReg="[가-힣][A-z]{1,8}$/)";
+		String agencyReg="^[가-힣]+$/";
 		if(!Pattern.matches(agencyReg, agency)) {
 			JOptionPane.showMessageDialog(this, "존재하는 소속사 형식에 맞게 입력해 주세요.");
 			agencyTF.requestFocus();
@@ -409,7 +409,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			return;
 		}
 		
-		String nameReg="^[가-힣]{1,8}$/";
+		String nameReg="^[가-힣]+$/";
 		if(!Pattern.matches(nameReg, nameTemp)) {
 			JOptionPane.showMessageDialog(this, "이름은 8자리 이내의 한글로만 입력해 주세요.");
 			nameTF.requestFocus();
@@ -454,7 +454,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			return;	
 		}
 		
-		String genderReg="[남]|[녀]{1}$/";
+		String genderReg="^[남]|[녀]{1}$/";
 		if(!Pattern.matches(genderReg, gender)) {
 			JOptionPane.showMessageDialog(this, "성별은 남 또는 녀로만 입력해 주세요.");
 			genderTF.requestFocus();
@@ -491,7 +491,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			return;
 		}
 		
-		String agencyReg="[가-힣][A-z]{1,8}$/)";
+		String agencyReg="^[가-힣]+$/";
 		if(!Pattern.matches(agencyReg, agency)) {
 			JOptionPane.showMessageDialog(this, "소속사 이름을 형식에 맞게 입력해 주세요.");
 			agencyTF.requestFocus();
@@ -524,7 +524,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			return;
 		}
 		
-		String nameReg="^[가-힣]{1,8}$/";
+		String nameReg="^[가-힣]+$/";
 		if(!Pattern.matches(nameReg, nameTemp)) {
 			JOptionPane.showMessageDialog(this, "이름은 8자리 이내의 한글로만 입력해 주세요.");
 			nameTF.requestFocus();
@@ -558,7 +558,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			return;	
 		}
 		
-		String nameReg="^[가-힣]{1,8}$/";
+		String nameReg="^[가-힣]+$/";
 		if(!Pattern.matches(nameReg, name)) {
 			JOptionPane.showMessageDialog(this, "이름은 8글자 이하의 한글로만 입력해 주세요.");
 			nameTF.requestFocus();
