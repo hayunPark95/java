@@ -55,7 +55,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		pname.add(nameTF = new JTextField(10));
 
 		JPanel pgender = new JPanel();
-		pgender.add(new JLabel("남자그룹/여자그룹"));
+		pgender.add(new JLabel("보이그룹/걸그룹"));
 		pgender.add(genderTF = new JTextField(10));
 		
 		JPanel pmem = new JPanel();
@@ -95,7 +95,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		bottom.add(cancelB = new JButton("초기화"));
 		cancelB.addActionListener(this);
 		
-		Object[] title={"그룹명","남자그룹/여자그룹","멤버수","대표곡","소속사"};
+		Object[] title={"그룹명","보이그룹/걸그룹","멤버수","대표곡","소속사"};
 		
 		//DefaultTableModel : 테이블의 행과 열을 표현하기 위한 객체
 		table=new JTable(new DefaultTableModel(title, 0));
@@ -142,7 +142,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			nameTF.setEditable(true);
 			break;
 		case UPDATE_CHANGE:
-			nameTF.setEditable(true);
+			nameTF.setEditable(false);
 			genderTF.setEditable(true);
 			memTF.setEditable(true);
 			songTF.setEditable(true);
@@ -309,9 +309,9 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			return;	
 		}
 		
-		String genderReg="[남자|여자]+$";
+		String genderReg="[보이그룹|걸그룹]+$";
 		if(!Pattern.matches(genderReg, gender)) {
-			JOptionPane.showMessageDialog(this, "성별은 반드시 남자나 여자로 입력해 주세요.");
+			JOptionPane.showMessageDialog(this, "성별은 반드시 보이그룹이나 걸그룹으로 입력해 주세요.");
 			nameTF.requestFocus();
 			return;
 		}
@@ -414,9 +414,9 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			return;	
 		}
 		
-		String genderReg="[남자|여자]+$";
+		String genderReg="[보이그룹|걸그룹]+$";
 		if(!Pattern.matches(genderReg, gender)) {
-			JOptionPane.showMessageDialog(this, "성별은 반드시 남자나 여자로 입력해 주세요.");
+			JOptionPane.showMessageDialog(this, "성별은 반드시 보이그룹이나 걸그룹으로 입력해 주세요.");
 			genderTF.requestFocus();
 			return;
 		}
@@ -542,5 +542,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		
 			model.addRow(rowData);
 		}
+		
+		setEnable(UPDATE_CHANGE);
 	}
 }
