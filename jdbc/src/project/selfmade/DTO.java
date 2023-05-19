@@ -59,5 +59,8 @@ public class DTO {
 	public void setAgency(String agency) {
 		this.agency = agency;
 	}
-	
+	@Override
+	public String toString() {
+		return name+"\t"+gender+"\t"+mem+"\t"+song+"\t"+agency;
+	}
 }

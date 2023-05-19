@@ -20,10 +20,7 @@ public class DAOClass extends Jdbc implements DAOInterface {
 	
 	public static DAOClass getDaoClass() {
 		return _dao;
-	}
-	
-	
-	
+	}	
 	
 	public int insertProject(DTO project) {
 		Connection con=null;
@@ -98,7 +95,7 @@ public class DAOClass extends Jdbc implements DAOInterface {
 		return rows;
 	}
 	
-	public DTO selectNameProject(String name) {
+	public DTO searchNameProject(String name) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -127,7 +124,7 @@ public class DAOClass extends Jdbc implements DAOInterface {
 		return project;
 	}
 	
-	public List<DTO> selectGenderProjecet(String gender){
+	public List<DTO> selectNameProject(String name){
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -137,7 +134,7 @@ public class DAOClass extends Jdbc implements DAOInterface {
 			con=getConnection();
 			String sql="SELECT * FROM PROJECT WHERE GENDER=? ORDER BY NAME";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, gender);
+			pstmt.setString(1, name);
 			rs=pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -170,13 +167,15 @@ public class DAOClass extends Jdbc implements DAOInterface {
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 
-			if(rs.next()) {
+			while(rs.next()) {
 				DTO project=new DTO();
 				project.setName(rs.getString("name"));
 				project.setGender(rs.getString("gender"));
 				project.setMem(rs.getString("mem"));
 				project.setSong(rs.getString("song"));
 				project.setAgency(rs.getString("agency"));
+				
+				projectList.add(project);
 			}
 		} catch(SQLException e) {
 			System.out.println("[에러] 모두 검색하기 과정에서의 SQL 오류 >>"+e.getMessage());			
@@ -196,7 +195,8 @@ public class DAOClass extends Jdbc implements DAOInterface {
 
 
 	@Override
-	public List<DTO> selectGenderList(String gender) {
+	public List<DTO> selectNameList(String name
+			) {
 		// TODO Auto-generated method stub
 		return null;
 	}
