@@ -19,8 +19,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import xyz.itwill.student.StudentDAOImpl;
-import xyz.itwill.student.StudentDTO;
+
 
 public class ProjectGUIApp extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
@@ -234,7 +233,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 				} else if (cmd != UPDATE_CHANGE) {
 					searchNameProject();
 				} else {
-					modifyProject();
+					updateProject();
 				}
 			} else if (c == deleteB) {
 				if (cmd != DELETE) {
@@ -288,7 +287,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			return;
 		}
 		
-		String nameReg="^[ㄱ-ㅎ|가-힣]+$/";
+		String nameReg="^[가-힣]+$";
 		if(!Pattern.matches(nameReg, nameTemp)) {
 			JOptionPane.showMessageDialog(this, "그룹명은 한글로만 입력해 주세요.");
 			nameTF.requestFocus();
@@ -310,7 +309,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			return;	
 		}
 		
-		String genderReg="";
+		String genderReg="[남자|여자]+$";
 		if(!Pattern.matches(genderReg, gender)) {
 			JOptionPane.showMessageDialog(this, "성별은 반드시 남자나 여자로 입력해 주세요.");
 			nameTF.requestFocus();
@@ -325,7 +324,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			return;
 		}
 		
-		String memReg="";
+		String memReg="^[0-9]+$";
 		if(!Pattern.matches(memReg, mem)) {
 			JOptionPane.showMessageDialog(this, "멤버수를 숫자로만 입력해 주세요.");
 			memTF.requestFocus();
@@ -349,7 +348,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			return;
 		}
 		
-		String agencyReg="";
+		String agencyReg="^[0-9]+$";
 		if(!Pattern.matches(agencyReg, agency)) {
 			JOptionPane.showMessageDialog(this, "소속사를 형식에 맞게 입력해 주세요.");
 			agencyTF.requestFocus();
@@ -378,7 +377,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			return;
 		}
 		
-		String nameReg="^[ㄱ-ㅎ|가-힣]+$/";
+		String nameReg="^[가-힣]+$";
 		if(!Pattern.matches(nameReg, nameTemp)) {
 			JOptionPane.showMessageDialog(this, "그룹명은 한글로만 입력해 주세요.");
 			nameTF.requestFocus();
@@ -403,7 +402,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		//UPDATE_CHANGE 상태로 변경
 		setEnable(UPDATE_CHANGE);
 	}
-	public void modifyProject() {
+	public void updateProject() {
 		String name=nameTF.getText();
 	
 		//JTextField 컴퍼넌트에 입력된 변경값을 반환받아 저장 
@@ -415,7 +414,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			return;	
 		}
 		
-		String genderReg="";
+		String genderReg="[남자|여자]+$";
 		if(!Pattern.matches(genderReg, gender)) {
 			JOptionPane.showMessageDialog(this, "성별은 반드시 남자나 여자로 입력해 주세요.");
 			genderTF.requestFocus();
@@ -430,7 +429,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			return;
 		}
 		
-		String memReg="";
+		String memReg="^[0-9]+$";
 		if(!Pattern.matches(memReg, mem)) {
 			JOptionPane.showMessageDialog(this, "멤버수는 숫자로만 입력해 주세요.");
 			memTF.requestFocus();
@@ -453,7 +452,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			return;
 		}
 		
-		String agencyReg="";
+		String agencyReg="^[0-9]+$";
 		if(!Pattern.matches(agencyReg, agency)) {
 			JOptionPane.showMessageDialog(this, "소속사 입력을 형식에 맞게 입력해 주세요.");
 			agencyTF.requestFocus();
@@ -483,7 +482,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			return;
 		}
 		
-		String nameReg="^[ㄱ-ㅎ|가-힣]+$/";
+		String nameReg="^[가-힣]+$";
 		if(!Pattern.matches(nameReg, name)) {
 			JOptionPane.showMessageDialog(this, "그룹명은 한글로만 입력해 주세요.");
 			nameTF.requestFocus();
@@ -511,7 +510,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			return;	
 		}
 		
-		String nameReg="";
+		String nameReg="^[가-힣]+$";
 		if(!Pattern.matches(nameReg, name)) {
 			JOptionPane.showMessageDialog(this, "이름은 반드시 한글로 입력해 주세요.");
 			nameTF.requestFocus();

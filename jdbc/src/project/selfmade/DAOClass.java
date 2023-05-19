@@ -124,36 +124,7 @@ public class DAOClass extends Jdbc implements DAOInterface {
 		return project;
 	}
 	
-	public List<DTO> selectNameProject(String name){
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		List<DTO> projectList=new ArrayList<DTO>();
-		
-		try {
-			con=getConnection();
-			String sql="SELECT * FROM PROJECT WHERE GENDER=? ORDER BY NAME";
-			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, name);
-			rs=pstmt.executeQuery();
-			
-			while(rs.next()) {
-				DTO project=new DTO();
-				project.setName(rs.getString("name"));
-				project.setGender(rs.getString("gender"));
-				project.setMem(rs.getString("mem"));
-				project.setSong(rs.getString("song"));
-				project.setAgency(rs.getString("agency"));
-				
-				projectList.add(project);
-			}			
-		} catch(SQLException e) {
-			System.out.println("[에러] 성별로 검색하는 과정에서의 SQL 오류 >>"+e.getMessage());			
-		} finally {
-			close(con, pstmt, rs);
-		}
-		return projectList;
-	}
+	
 	
 	public List<DTO> selectAllProject(){
 		Connection con=null;
@@ -192,13 +163,36 @@ public class DAOClass extends Jdbc implements DAOInterface {
 	}
 
 
-
-
 	@Override
-	public List<DTO> selectNameList(String name
-			) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<DTO> selectNameList(String name) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<DTO> projectList=new ArrayList<DTO>();
+		
+		try {
+			con=getConnection();
+			String sql="SELECT * FROM PROJECT WHERE name=? ORDER BY NAME";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				DTO project=new DTO();
+				project.setName(rs.getString("name"));
+				project.setGender(rs.getString("gender"));
+				project.setMem(rs.getString("mem"));
+				project.setSong(rs.getString("song"));
+				project.setAgency(rs.getString("agency"));
+				
+				projectList.add(project);
+			}			
+		} catch(SQLException e) {
+			System.out.println("[에러] 이름으로 검색하는 과정에서의 SQL 오류 >>"+e.getMessage());			
+		} finally {
+			close(con, pstmt, rs);
+		}
+		return projectList;
 	}
 
 
