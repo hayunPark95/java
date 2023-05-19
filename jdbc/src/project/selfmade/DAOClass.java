@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DAOClass extends Jdbc {
+public class DAOClass extends Jdbc implements DAOInterface {
 	private static DAOClass _dao;
 	
 	private DAOClass() {
@@ -158,7 +158,7 @@ public class DAOClass extends Jdbc {
 		return projectList;
 	}
 	
-	public List<DTO> selectAllProject(String gender){
+	public List<DTO> selectAllProject(){
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -184,5 +184,29 @@ public class DAOClass extends Jdbc {
 			close(con, pstmt, rs);
 		}
 		return projectList;
+	}
+
+	@Override
+	public DTO selectProject(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
+	@Override
+	public List<DTO> selectGenderList(String gender) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
+	@Override
+	public List<DTO> selectAllList() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

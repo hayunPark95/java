@@ -3,9 +3,9 @@ package project.selfmade;
 import java.util.List;
 
 public interface DAOInterface {
-	String insertProject(DTO project);
-	String updateProject(DTO project);
-	String deleteProject(String name);
+	int insertProject(DTO project);
+	int updateProject(DTO project);
+	int deleteProject(String name);
 	DTO selectProject(String name);
 	
 	List<DTO> selectGenderList(String gender);
