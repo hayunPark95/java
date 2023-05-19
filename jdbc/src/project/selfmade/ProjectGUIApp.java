@@ -150,7 +150,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			agencyTF.setEditable(true);
 			break;
 		case SEARCH:
-			genderTF.setEditable(true);
+			nameTF.setEditable(true);
 			break;
 		case NONE:
 			nameTF.setEditable(true);
