@@ -1,4 +1,4 @@
-package project;
+package project.copycat;
 
 import java.util.List;
 

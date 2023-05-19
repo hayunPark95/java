@@ -1,4 +1,4 @@
-package project;
+package project.copycat;
 
 public class ProjectDTO {
 	private String mem;

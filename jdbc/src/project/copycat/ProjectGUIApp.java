@@ -1,4 +1,4 @@
-package project; 
+package project.copycat; 
 
 /********************************************************
 파    일   명 : StudentGUIApp.java
