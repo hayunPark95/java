@@ -74,6 +74,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		left.add(pname);
 		left.add(pgender);
 		left.add(pmem);
+		
 		left.add(psong);
 		left.add(pagency);
 		
