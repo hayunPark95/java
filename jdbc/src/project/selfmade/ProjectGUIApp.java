@@ -152,11 +152,11 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			nameTF.setEditable(true);
 			break;
 		case NONE:
-			nameTF.setEditable(true);
-			genderTF.setEditable(true);
-			memTF.setEditable(true);
-			songTF.setEditable(true);
-			agencyTF.setEditable(true);
+			nameTF.setEditable(false);
+			genderTF.setEditable(false);
+			memTF.setEditable(false);
+			songTF.setEditable(false);
+			agencyTF.setEditable(false);
 		}
 	}
 	//이벤트에 따른 JTextField 컴퍼넌트와 JButton 컴퍼넌트의 활성화 상태 변경
@@ -233,7 +233,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 				} else if (cmd != UPDATE_CHANGE) {
 					searchNameProject();
 				} else {
-					updateProject();
+					modifyProject();
 				}
 			} else if (c == deleteB) {
 				if (cmd != DELETE) {
@@ -256,7 +256,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		}		
 	}
 	public void displayAllProject() {
-		List<DTO> projectList=DAOClass.getDaoClass().selectAllProject();
+		List<DTO> projectList=DAOClass.getDao().selectAllProjectList();
 
 		if(projectList.isEmpty()) {
 			JOptionPane.showMessageDialog(this, "저장된 정보가 없습니다.");
@@ -295,7 +295,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		}
 		
 		String name=nameTF.getText();		
-		if(DAOClass.getDaoClass().selectProject(name) != null) {
+		if(DAOClass.getDao().selectProject(name) != null) {
 			JOptionPane.showMessageDialog(this, "이미 존재하는 그룹명을 입력 하였습니다.");
 			nameTF.requestFocus();
 			return;	
@@ -350,7 +350,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		
 		String agencyReg="^[0-9]+$";
 		if(!Pattern.matches(agencyReg, agency)) {
-			JOptionPane.showMessageDialog(this, "소속사를 형식에 맞게 입력해 주세요.");
+			JOptionPane.showMessageDialog(this, "소속사를 형식에 맞게 숫자로 입력해 주세요.");
 			agencyTF.requestFocus();
 			return;
 		}
@@ -362,14 +362,14 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		project.setSong(song);
 		project.setAgency(agency);
 		
-		int rows=DAOClass.getDaoClass().insertProject(project);
+		int rows=DAOClass.getDao().insertProject(project);
 		
 		JOptionPane.showMessageDialog(this, rows+"명의 정보를 삽입 하였습니다.");
 
 		displayAllProject();
 		initDisplay();
 	}
-	public void selectNameProject() {
+	public void searchNameProject() {
 		String nameTemp=nameTF.getText();
 		if(nameTemp.equals("")) {
 			JOptionPane.showMessageDialog(this, "그룹명을 반드시 입력해 주세요.");
@@ -384,7 +384,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			return;	
 		}
 
-		DTO project=DAOClass.getDaoClass().selectProject(nameTemp);
+		DTO project=DAOClass.getDao().selectProject(nameTemp);
 		
 		if(project == null) {
 			JOptionPane.showMessageDialog(this, "변경할 그룹명의 그룹정보가 없습니다.");
@@ -402,7 +402,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		//UPDATE_CHANGE 상태로 변경
 		setEnable(UPDATE_CHANGE);
 	}
-	public void updateProject() {
+	public void modifyProject() {
 		String name=nameTF.getText();
 	
 		//JTextField 컴퍼넌트에 입력된 변경값을 반환받아 저장 
@@ -454,7 +454,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		
 		String agencyReg="^[0-9]+$";
 		if(!Pattern.matches(agencyReg, agency)) {
-			JOptionPane.showMessageDialog(this, "소속사 입력을 형식에 맞게 입력해 주세요.");
+			JOptionPane.showMessageDialog(this, "소속사 입력을 형식에 맞게 숫자로 입력해 주세요.");
 			agencyTF.requestFocus();
 			return;
 		}
@@ -466,7 +466,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		project.setSong(song);
 		project.setAgency(agency);
 		
-		int rows=DAOClass.getDaoClass().updateProject(project);
+		int rows=DAOClass.getDao().updateProject(project);
 		
 		JOptionPane.showMessageDialog(this, rows+"개의 그룹정보를 변경 하였습니다.");
 
@@ -489,7 +489,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			return;	
 		}
 		
-		int rows=DAOClass.getDaoClass().deleteProject(name);
+		int rows=DAOClass.getDao().deleteProject(name);
 		
 		if(rows > 0) {
 			JOptionPane.showMessageDialog(this, rows+"개의 그룹 정보를 삭제 하였습니다.");
@@ -501,24 +501,24 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		initDisplay();
 	}
 	
-	public void searchNameProject() {
-		String name=nameTF.getText();
+	public void searchGenderProject() {
+		String gender=genderTF.getText();
 		
-		if(name.equals("")) {
-			JOptionPane.showMessageDialog(this, "이름을 반드시 입력해 주세요.");
+		if(gender.equals("")) {
+			JOptionPane.showMessageDialog(this, "성별을 반드시 입력해 주세요.");
 			genderTF.requestFocus();
 			return;	
 		}
 		
-		String nameReg="^[가-힣]+$";
-		if(!Pattern.matches(nameReg, name)) {
-			JOptionPane.showMessageDialog(this, "이름은 반드시 한글로 입력해 주세요.");
-			nameTF.requestFocus();
+		String genderReg="[보이그룹|걸그룹]+$";
+		if(!Pattern.matches(genderReg, gender)) {
+			JOptionPane.showMessageDialog(this, "성별은 반드시 보이그룹이나 걸그룹으로 입력해 주세요.");
+			genderTF.requestFocus();
 			return;
 		}
 		
 
-		List<DTO> projectList=DAOClass.getDaoClass().selectNameList(name);
+		List<DTO> projectList=DAOClass.getDao().selectGenderProjectList(gender);
 		
 		if(projectList.isEmpty()) {
 			JOptionPane.showMessageDialog(this, "검색된 그룹정보가 없습니다.");
@@ -542,7 +542,5 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		
 			model.addRow(rowData);
 		}
-		
-		setEnable(UPDATE_CHANGE);
 	}
 }

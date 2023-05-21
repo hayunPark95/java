@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import xyz.itwill.student.StudentDTO;
+
 public class DAOClass extends Jdbc implements DAOInterface {
 	private static DAOClass _dao;
 	
@@ -18,10 +20,10 @@ public class DAOClass extends Jdbc implements DAOInterface {
 		_dao=new DAOClass();
 	}
 	
-	public static DAOClass getDaoClass() {
+	public static DAOClass getDao() {
 		return _dao;
 	}	
-	
+	@Override
 	public int insertProject(DTO project) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -47,7 +49,7 @@ public class DAOClass extends Jdbc implements DAOInterface {
 		}
 		return rows;
 	}
-	
+	@Override
 	public int updateProject(DTO project) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -73,7 +75,7 @@ public class DAOClass extends Jdbc implements DAOInterface {
 		}
 		return rows;
 	}
-	
+	@Override
 	public int deleteProject(String name) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -94,8 +96,8 @@ public class DAOClass extends Jdbc implements DAOInterface {
 		}
 		return rows;
 	}
-	
-	public DTO searchNameProject(String name) {
+	@Override	
+	public DTO selectProject(String name) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -111,10 +113,10 @@ public class DAOClass extends Jdbc implements DAOInterface {
 			if(rs.next()) {
 				project=new DTO();
 				project.setName(rs.getString("Name"));
-				project.setName(rs.getString("Gender"));
-				project.setName(rs.getString("Mem"));
-				project.setName(rs.getString("Song"));
-				project.setName(rs.getString("Agency"));
+				project.setGender(rs.getString("Gender"));
+				project.setMem(rs.getString("Mem"));
+				project.setSong(rs.getString("Song"));
+				project.setAgency(rs.getString("Agency"));
 			}
 		} catch(SQLException e) {
 			System.out.println("[에러] 검색 과정에서의 SQL 오류 >>"+e.getMessage());
@@ -123,10 +125,43 @@ public class DAOClass extends Jdbc implements DAOInterface {
 		}
 		return project;
 	}
+	@Override
+	public List<DTO> selectGenderProjectList(String gender) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<DTO> projectList=new ArrayList<>();
+		try {
+			con=getConnection();
+			
+			String sql="SELECT * FROM PROJECT WHERE GENDER=? ORDER BY NAME";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, gender);
+			rs=pstmt.executeQuery();
+			
+			//검색행이 0개 이상인 경우 반복문 사용
+			while(rs.next()) {
+				//하나의 검색행을 DTO 객체로 매핑 처리
+				DTO project=new DTO();
+				project.setName(rs.getString("Name"));
+				project.setGender(rs.getString("Gender"));
+				project.setMem(rs.getString("Mem"));
+				project.setSong(rs.getString("Song"));
+				project.setAgency(rs.getString("Agency"));
+				
+				//DTO 객체를 List 객체의 요소로 추가 
+				projectList.add(project);
+			}
+		} catch (SQLException e) {
+			System.out.println("[에러]selectGenderProjectList() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt, rs);
+		}
+		return projectList;
+	}
 	
-	
-	
-	public List<DTO> selectAllProject(){
+	@Override
+	public List<DTO> selectAllProjectList(){
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -154,53 +189,5 @@ public class DAOClass extends Jdbc implements DAOInterface {
 			close(con, pstmt, rs);
 		}
 		return projectList;
-	}
-
-	@Override
-	public DTO selectProject(String name) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public List<DTO> selectNameList(String name) {
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		List<DTO> projectList=new ArrayList<DTO>();
-		
-		try {
-			con=getConnection();
-			String sql="SELECT * FROM PROJECT WHERE name=? ORDER BY NAME";
-			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, name);
-			rs=pstmt.executeQuery();
-			
-			while(rs.next()) {
-				DTO project=new DTO();
-				project.setName(rs.getString("name"));
-				project.setGender(rs.getString("gender"));
-				project.setMem(rs.getString("mem"));
-				project.setSong(rs.getString("song"));
-				project.setAgency(rs.getString("agency"));
-				
-				projectList.add(project);
-			}			
-		} catch(SQLException e) {
-			System.out.println("[에러] 이름으로 검색하는 과정에서의 SQL 오류 >>"+e.getMessage());			
-		} finally {
-			close(con, pstmt, rs);
-		}
-		return projectList;
-	}
-
-
-
-
-	@Override
-	public List<DTO> selectAllList() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

@@ -23,6 +23,12 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+//JAVA 프로그램(클래스)를 배포하는 방법
+//1.프로젝트 >> 오른쪽 버튼 클릭 >> Export >> Java 선택 >> Runnable JAR File 선택
+//2.Launch configuration >> 프로그램 선택
+//3.Export destination >> Jar 파일의 경로 입력
+//4.Finish 클릭
+
 public class StudentGUIApp extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 
@@ -260,7 +266,7 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 				} else {//두번째 [검색] 버튼을 누른 경우 - SEARCH 상태
 					//입력된 이름으로 STUDENT 테이블에 저장된 해당 이름이 포함된 학생정보를 
 					//검색하는 출력하는 메소드 호출
-					searchNoStudent();
+					searchNameStudent();
 				}
 			} else if (c == cancelB) {
 				displayAllStudent();
@@ -553,7 +559,7 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 	
 	//JTextField 컴퍼넌트로 입력된 이름을 제공받아 STUDENT 테이블에 저장된 해당 이름이 포함된  
 	//학생정보를 검색하고 JTable 컴퍼넌트에 출력하는 메소드	
-	public void searchGenderProject() {
+	public void searchNameStudent() {
 		String name=nameTF.getText();
 		
 		if(name.equals("")) {
