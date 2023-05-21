@@ -69,6 +69,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		JPanel pagency = new JPanel();
 		pagency.add(new JLabel("소속사"));
 		pagency.add(agencyTF = new JTextField(10));
+		
 
 		left.add(pname);
 		left.add(pgender);

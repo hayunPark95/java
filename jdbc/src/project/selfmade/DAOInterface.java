@@ -8,6 +8,6 @@ public interface DAOInterface {
 	int deleteProject(String name);
 	DTO selectProject(String name);
 	
-	List<DTO> selectGenderProjectList(String name);
+	List<DTO> selectGenderProjectList(String gender);
 	List<DTO> selectAllProjectList();
 }
