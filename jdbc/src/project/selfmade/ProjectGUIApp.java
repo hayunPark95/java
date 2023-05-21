@@ -30,9 +30,10 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 	public static final int UPDATE = 3;
 	public static final int UPDATE_CHANGE = 4;
 	public static final int SEARCH = 5;
+	public static final int ENAME = 6;
 	
 	JTextField nameTF,genderTF, memTF, songTF, agencyTF;
-	JButton addB,deleteB,updateB,searchB,cancelB;
+	JButton addB,deleteB,updateB,searchB,cancelB,enameB;
 	// 얘는 표(테이블)가 나오게 하기 위한 컴퍼넌트
 	JTable table;
 	
@@ -70,7 +71,6 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		pagency.add(new JLabel("소속사"));
 		pagency.add(agencyTF = new JTextField(10));
 		
-
 		left.add(pname);
 		left.add(pgender);
 		left.add(pmem);
@@ -80,8 +80,12 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		
 		// 여기에는 우리가 넣을 버튼에 대한 위치 및 버튼 이름 설정
 		JPanel bottom = new JPanel();
-		bottom.setLayout(new GridLayout(1, 5));
-
+		bottom.setLayout(new GridLayout(1,5));
+		left.setLayout(new GridLayout(7,1));
+		
+		left.add(enameB = new JButton("소속사 확인"));
+		enameB.addActionListener(this);
+		
 		bottom.add(addB = new JButton("삽  입"));
 		addB.addActionListener(this);
 
@@ -97,7 +101,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		bottom.add(cancelB = new JButton("초기화"));
 		cancelB.addActionListener(this);
 		
-		Object[] title={"그룹명","보이그룹/걸그룹","멤버수","대표곡","소속사"};
+		Object[] title={"그룹명","보이그룹/걸그룹","멤버수","대표곡","소속사 확인"};
 		
 		//DefaultTableModel : 테이블의 행과 열을 표현하기 위한 객체
 		table=new JTable(new DefaultTableModel(title, 0));
@@ -144,7 +148,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			nameTF.setEditable(true);
 			break;
 		case UPDATE_CHANGE:
-			nameTF.setEditable(false);
+			nameTF.setEditable(true);
 			genderTF.setEditable(true);
 			memTF.setEditable(true);
 			songTF.setEditable(true);
@@ -159,6 +163,9 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			memTF.setEditable(false);
 			songTF.setEditable(false);
 			agencyTF.setEditable(false);
+			break;
+		case ENAME:
+			nameTF.setEditable(true);
 		}
 	}
 	//이벤트에 따른 JTextField 컴퍼넌트와 JButton 컴퍼넌트의 활성화 상태 변경
@@ -167,6 +174,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		deleteB.setEnabled(false);
 		updateB.setEnabled(false);
 		searchB.setEnabled(false);
+		enameB.setEnabled(false);
 
 		switch (n) {
 		case ADD:
@@ -199,6 +207,12 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			deleteB.setEnabled(true);
 			updateB.setEnabled(true);
 			searchB.setEnabled(true);
+			enameB.setEnabled(true);
+			break;
+		case ENAME:
+			enameB.setEnabled(true);
+			setEditable(ENAME);
+			cmd = ENAME;
 		}
 	}
 	//JTextField 컴퍼넌트의 입력값 초기화
@@ -246,12 +260,18 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			} else if (c == searchB) {
 				if (cmd != SEARCH) {
 					setEnable(SEARCH);		
-				} else {
-					searchNameProject();
+				}else {
+					searchAgencyProject();
 				}
 			} else if (c == cancelB) {
 				displayAllProject();
 				initDisplay();
+			} else if (c == enameB) {
+				if (cmd != ENAME) {
+				setEnable(ENAME);
+			} else  {
+				searchAgencyProject();
+				}
 			}
 		} catch (Exception e) {
 			System.out.println("예외 발생 : " + e);
@@ -276,6 +296,26 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			rowData.add(project.getGender());
 			rowData.add(project.getMem());
 			rowData.add(project.getSong());
+			rowData.add(project.getAgency());
+		
+			model.addRow(rowData);
+		}
+	}
+	public void displayAllProject2() {
+		List<DTO2> projectList2=DAOClass.getDao().selectAllAgencyProjectList();
+
+		if(projectList2.isEmpty()) {
+			JOptionPane.showMessageDialog(this, "저장된 정보가 없습니다.");
+			return;
+		}
+		
+		DefaultTableModel model=(DefaultTableModel)table.getModel();
+		
+		for(int i=model.getRowCount();i>0;i--) {
+			model.removeRow(0);
+		}
+		for(DTO2 project : projectList2) {
+			Vector<Object> rowData=new Vector<>();
 			rowData.add(project.getAgency());
 		
 			model.addRow(rowData);
@@ -389,7 +429,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		DTO project=DAOClass.getDao().selectProject(nameTemp);
 		
 		if(project == null) {
-			JOptionPane.showMessageDialog(this, "변경할 그룹명의 그룹정보가 없습니다.");
+			JOptionPane.showMessageDialog(this, "검색한 그룹명의 그룹정보가 없습니다.");
 			nameTF.requestFocus();
 			nameTF.setText("");
 			return;
@@ -403,6 +443,32 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		
 		//UPDATE_CHANGE 상태로 변경
 		setEnable(UPDATE_CHANGE);
+	}
+	public void searchAgencyProject() {
+		String nameTemp=nameTF.getText();
+		if(nameTemp.equals("")) {
+			JOptionPane.showMessageDialog(this, "그룹명을 반드시 입력해 주세요.");
+			nameTF.requestFocus();
+			return;
+		}
+		
+		String nameReg="^[가-힣]+$";
+		if(!Pattern.matches(nameReg, nameTemp)) {
+			JOptionPane.showMessageDialog(this, "그룹명은 한글로만 입력해 주세요.");
+			nameTF.requestFocus();
+			return;	
+		}
+
+		DTO2 project=DAOClass.getDao().selectAgencyProject(nameTemp);
+		
+		if(project == null) {
+			JOptionPane.showMessageDialog(this, "검색한 그룹명의 소속사 정보가 없습니다.");
+			nameTF.requestFocus();
+			nameTF.setText("");
+			return;
+		}
+		displayAllProject2();
+		initDisplay();
 	}
 	public void modifyProject() {
 		String name=nameTF.getText();
@@ -501,48 +567,5 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		}
 		
 		initDisplay();
-	}
-	
-	public void searchGenderProject() {
-		String gender=genderTF.getText();
-		
-		if(gender.equals("")) {
-			JOptionPane.showMessageDialog(this, "성별을 반드시 입력해 주세요.");
-			genderTF.requestFocus();
-			return;	
-		}
-		
-		String genderReg="[보이그룹|걸그룹]+$";
-		if(!Pattern.matches(genderReg, gender)) {
-			JOptionPane.showMessageDialog(this, "성별은 반드시 보이그룹이나 걸그룹으로 입력해 주세요.");
-			genderTF.requestFocus();
-			return;
-		}
-		
-
-		List<DTO> projectList=DAOClass.getDao().selectGenderProjectList(gender);
-		
-		if(projectList.isEmpty()) {
-			JOptionPane.showMessageDialog(this, "검색된 그룹정보가 없습니다.");
-			return;
-		}
-		DefaultTableModel model=(DefaultTableModel)table.getModel();
-		
-		//JTable 컴퍼넌트 초기화 - 기존 출력행 삭제 처리
-		for(int i=model.getRowCount();i>0;i--) {
-			model.removeRow(0);
-		}
-
-		for(DTO project : projectList) {
-			Vector<Object> rowData=new Vector<>();
-
-			rowData.add(project.getName());
-			rowData.add(project.getGender());
-			rowData.add(project.getMem());
-			rowData.add(project.getSong());
-			rowData.add(project.getAgency());
-		
-			model.addRow(rowData);
-		}
 	}
 }

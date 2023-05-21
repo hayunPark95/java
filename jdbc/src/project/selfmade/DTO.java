@@ -7,10 +7,11 @@ public class DTO {
 	private String song;
 	private String agency;
 	
+	
 	public DTO() {
 		// TODO Auto-generated constructor stub
 	}
-
+	
 	public DTO(String name, String gender, String mem, String song, String agency) {
 		super();
 		this.name = name;
@@ -59,6 +60,7 @@ public class DTO {
 	public void setAgency(String agency) {
 		this.agency = agency;
 	}
+
 	@Override
 	public String toString() {
 		return name+"\t"+gender+"\t"+mem+"\t"+song+"\t"+agency;

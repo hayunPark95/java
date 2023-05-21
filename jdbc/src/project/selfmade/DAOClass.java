@@ -7,9 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import xyz.itwill.student.StudentDTO;
 
-public class DAOClass extends Jdbc implements DAOInterface {
+public class DAOClass extends Jdbc implements DAOInterface,DAOInterface2 {
 	private static DAOClass _dao;
 	
 	private DAOClass() {
@@ -38,7 +37,7 @@ public class DAOClass extends Jdbc implements DAOInterface {
 			pstmt.setString(2, project.getGender());		
 			pstmt.setString(3, project.getMem());		
 			pstmt.setString(4, project.getSong());	
-			pstmt.setString(5, project.getAgency());		
+			pstmt.setString(5, project.getAgency());	
 			
 			rows=pstmt.executeUpdate();
 			
@@ -125,41 +124,31 @@ public class DAOClass extends Jdbc implements DAOInterface {
 		}
 		return project;
 	}
-	@Override
-	public List<DTO> selectGenderProjectList(String gender) {
+	@Override	
+	public DTO2 selectAgencyProject(String name) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		List<DTO> projectList=new ArrayList<>();
+		DTO2 project=null;
+		
 		try {
 			con=getConnection();
-			
-			String sql="SELECT * FROM PROJECT WHERE GENDER=? ORDER BY NAME";
+			String sql="SELECT ENAME FROM PROJECT3 INNER JOIN PROJECT ON PROJECT3.AGENCY=PROJECT.AGENCY WHERE NAME=?";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, gender);
+			pstmt.setString(1, name);
 			rs=pstmt.executeQuery();
 			
-			//검색행이 0개 이상인 경우 반복문 사용
-			while(rs.next()) {
-				//하나의 검색행을 DTO 객체로 매핑 처리
-				DTO project=new DTO();
-				project.setName(rs.getString("Name"));
-				project.setGender(rs.getString("Gender"));
-				project.setMem(rs.getString("Mem"));
-				project.setSong(rs.getString("Song"));
-				project.setAgency(rs.getString("Agency"));
-				
-				//DTO 객체를 List 객체의 요소로 추가 
-				projectList.add(project);
+			if(rs.next()) {
+				project=new DTO2();
 			}
-		} catch (SQLException e) {
-			System.out.println("[에러]selectGenderProjectList() 메소드의 SQL 오류 = "+e.getMessage());
+		} catch(SQLException e) {
+			System.out.println("[에러] SQL 오류 >>"+e.getMessage());
 		} finally {
-			close(con, pstmt, rs);
+			close(con,pstmt,rs);
 		}
-		return projectList;
+		return project;
 	}
-	
+
 	@Override
 	public List<DTO> selectAllProjectList(){
 		Connection con=null;
@@ -189,5 +178,32 @@ public class DAOClass extends Jdbc implements DAOInterface {
 			close(con, pstmt, rs);
 		}
 		return projectList;
+	}
+	
+	@Override
+	public List<DTO2> selectAllAgencyProjectList() {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<DTO2> projectList2=new ArrayList<DTO2>();	
+		
+		try {
+			con=getConnection();
+			String sql="SELECT * FROM PROJECT3 ORDER BY AGENCY";
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				DTO2 project=new DTO2();
+				project.setAgency(rs.getString("agency"));
+				project.setEname(rs.getString("ename"));
+				
+				projectList2.add(project);
+			}
+		} catch(SQLException e) {
+			System.out.println("[에러] 소속사 검색 과정에서의 SQL 오류 >>"+e.getMessage());			
+		} finally {
+			close(con, pstmt, rs);
+		}
+		return projectList2;
 	}
 }
