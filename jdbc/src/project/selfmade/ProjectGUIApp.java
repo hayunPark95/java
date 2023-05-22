@@ -1,9 +1,14 @@
 package project.selfmade;
 
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -13,6 +18,7 @@ import java.util.List;
 import java.util.Vector;
 import java.util.regex.Pattern;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -36,7 +42,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 	public static final int SEARCH = 5;
 	
 	JTextField nameTF,genderTF, memTF, mnameTF, songTF, agencyTF;
-	JButton addB,deleteB,updateB,searchB,cancelB,enameB,rankingB,musicB,changeB;
+	JButton addB,deleteB,updateB,searchB,cancelB,enameB,rankingB,musicB,randomB;
 	// 얘는 표(테이블)가 나오게 하기 위한 컴퍼넌트
 	JTable table;
 	
@@ -81,8 +87,42 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		JButton enameB = new JButton("소속사 정보");
 		JButton rankingB = new JButton("아이돌 랭킹 보기");
 		JButton musicB = new JButton("음원 차트");
-		JButton changeB = new JButton("오늘의 IDOL");
+		JButton randomB = new JButton("오늘의 IDOL");
 		
+		  //커스텀 커서 만들기
+		  Toolkit tk = Toolkit.getDefaultToolkit();
+		  Image cursorimage = tk.getImage("src/image/HH.png");
+		  Point point = new Point(0,0);
+		  Cursor cursor = tk.createCustomCursor(cursorimage, point, "HH");
+
+	      //버튼에 이미지 넣기
+		  ImageIcon img = new ImageIcon("src/image/cc.png");
+		  ImageIcon img2 = new ImageIcon("src/image/hhh.jpg");
+		  ImageIcon img3 = new ImageIcon("src/image/music.jpg");
+	      ImageIcon img4 = new ImageIcon("src/image/what.jpg");
+	      
+	      enameB.setIcon(img);
+	      enameB.setCursor(cursor); // 커서 변경
+	      enameB.setBackground(Color.white); //배경색 변경
+	      enameB.setForeground(Color.red); //글자색 변경
+	      
+	      rankingB.setIcon(img2);
+	      rankingB.setCursor(cursor);         
+	      rankingB.setBackground(Color.white);
+	      rankingB.setForeground(Color.orange);
+
+	      musicB.setIcon(img3);
+	      musicB.setCursor(cursor);      
+	      musicB.setBackground(Color.white);
+	      musicB.setForeground(Color.blue);
+	      
+	      randomB.setIcon(img4);
+	      randomB.setCursor(cursor); // 커서 변경
+	      randomB.setBackground(Color.white); //배경색 변경
+	      randomB.setForeground(Color.red); //글자색 변경
+
+	      	
+	      
 		left.add(pname);
 		left.add(pgender);
 		left.add(pmem);
@@ -93,7 +133,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		left.add(enameB);
 		left.add(rankingB);
 		left.add(musicB);
-		left.add(changeB);
+		left.add(randomB);
 		//여기는 새로운 버튼 추가한거
 		enameB.addActionListener(new ActionListener() {
 			
@@ -154,7 +194,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
-		changeB.addActionListener(new ActionListener() {
+		randomB.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
