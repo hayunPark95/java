@@ -4,6 +4,7 @@ public class DTO {
 	private String name;
 	private String gender;
 	private String mem;
+	private String mname;
 	private String song;
 	private String agency;
 	
@@ -11,16 +12,18 @@ public class DTO {
 	public DTO() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	public DTO(String name, String gender, String mem, String song, String agency) {
+
+	public DTO(String name, String gender, String mem, String mname, String song, String agency) {
 		super();
 		this.name = name;
 		this.gender = gender;
 		this.mem = mem;
+		this.mname = mname;
 		this.song = song;
 		this.agency = agency;
 	}
-
+	
+	
 	public String getName() {
 		return name;
 	}
@@ -45,6 +48,14 @@ public class DTO {
 		this.mem = mem;
 	}
 
+	public String getMname() {
+		return mname;
+	}
+
+	public void setMname(String mname) {
+		this.mname = mname;
+	}
+
 	public String getSong() {
 		return song;
 	}
@@ -63,6 +74,6 @@ public class DTO {
 
 	@Override
 	public String toString() {
-		return name+"\t"+gender+"\t"+mem+"\t"+song+"\t"+agency;
+		return name+"\t"+gender+"\t"+mem+"\t"+mname+"\t"+song+"\t"+agency;
 	}
 }

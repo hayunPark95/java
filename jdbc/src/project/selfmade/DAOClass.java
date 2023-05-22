@@ -31,13 +31,14 @@ public class DAOClass extends Jdbc implements DAOInterface {
 		try {
 			con=getConnection();
 			
-			String sql="INSERT INTO PROJECT VALUES(?,?,?,?,?)";
+			String sql="INSERT INTO PROJECT VALUES(?,?,?,?,?,?)";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, project.getName());		
 			pstmt.setString(2, project.getGender());		
 			pstmt.setString(3, project.getMem());		
-			pstmt.setString(4, project.getSong());	
-			pstmt.setString(5, project.getAgency());	
+			pstmt.setString(4, project.getMname());		
+			pstmt.setString(5, project.getSong());	
+			pstmt.setString(6, project.getAgency());	
 			
 			rows=pstmt.executeUpdate();
 			
@@ -57,13 +58,15 @@ public class DAOClass extends Jdbc implements DAOInterface {
 		try {
 			con=getConnection();
 			
-			String sql="UPDATE PROJECT SET GENDER=?,MEM=?,SONG=?,AGENCY=? WHERE NAME=?";
+			String sql="UPDATE PROJECT SET GENDER=?,MEM=?,MNAME=?,SONG=?,AGENCY=? WHERE NAME=?";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, project.getGender());
-			pstmt.setString(2, project.getMem());
-			pstmt.setString(3, project.getSong());
-			pstmt.setString(4, project.getAgency());
-			pstmt.setString(5, project.getName());
+			pstmt.setString(1, project.getName());		
+			pstmt.setString(2, project.getGender());		
+			pstmt.setString(3, project.getMem());		
+			pstmt.setString(4, project.getMname());		
+			pstmt.setString(5, project.getSong());	
+			pstmt.setString(6, project.getAgency());
+
 			
 			rows=pstmt.executeUpdate();
 			
@@ -111,11 +114,12 @@ public class DAOClass extends Jdbc implements DAOInterface {
 			
 			if(rs.next()) {
 				project=new DTO();
-				project.setName(rs.getString("Name"));
-				project.setGender(rs.getString("Gender"));
-				project.setMem(rs.getString("Mem"));
-				project.setSong(rs.getString("Song"));
-				project.setAgency(rs.getString("Agency"));
+				project.setName(rs.getString("name"));
+				project.setGender(rs.getString("gender"));
+				project.setMem(rs.getString("mem"));
+				project.setMname(rs.getString("mname"));
+				project.setSong(rs.getString("song"));
+				project.setAgency(rs.getString("agency"));
 			}
 		} catch(SQLException e) {
 			System.out.println("[에러] 검색 과정에서의 SQL 오류 >>"+e.getMessage());
@@ -143,6 +147,7 @@ public class DAOClass extends Jdbc implements DAOInterface {
 				project.setName(rs.getString("name"));
 				project.setGender(rs.getString("gender"));
 				project.setMem(rs.getString("mem"));
+				project.setMname(rs.getString("mname"));
 				project.setSong(rs.getString("song"));
 				project.setAgency(rs.getString("agency"));
 				
@@ -157,7 +162,7 @@ public class DAOClass extends Jdbc implements DAOInterface {
 	}
 	
 	@Override
-	public List<DTO> selectAllProjectListOrderByAgency(){
+	public List<DTO> selectAllProjectListOrderByRandom(){
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -174,6 +179,7 @@ public class DAOClass extends Jdbc implements DAOInterface {
 				project.setName(rs.getString("name"));
 				project.setGender(rs.getString("gender"));
 				project.setMem(rs.getString("mem"));
+				project.setMname(rs.getString("mname"));
 				project.setSong(rs.getString("song"));
 				project.setAgency(rs.getString("agency"));
 				

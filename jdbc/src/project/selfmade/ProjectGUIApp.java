@@ -35,7 +35,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 	public static final int UPDATE_CHANGE = 4;
 	public static final int SEARCH = 5;
 	
-	JTextField nameTF,genderTF, memTF, songTF, agencyTF;
+	JTextField nameTF,genderTF, memTF, mnameTF, songTF, agencyTF;
 	JButton addB,deleteB,updateB,searchB,cancelB,enameB,rankingB,musicB,changeB;
 	// 얘는 표(테이블)가 나오게 하기 위한 컴퍼넌트
 	JTable table;
@@ -65,6 +65,10 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		JPanel pmem = new JPanel();
 		pmem.add(new JLabel("멤버수"));
 		pmem.add(memTF = new JTextField(10));
+		
+		JPanel pmname = new JPanel();
+		pmname.add(new JLabel("멤버구성"));
+		pmname.add(mnameTF = new JTextField(10));
 
 		JPanel psong = new JPanel();
 		psong.add(new JLabel("대표곡"));
@@ -74,9 +78,6 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		pagency.add(new JLabel("소속사"));
 		pagency.add(agencyTF = new JTextField(10));
 		
-		JPanel pnoname = new JPanel();
-		pnoname.add(new JLabel(""));
-		
 		JButton enameB = new JButton("소속사 정보");
 		JButton rankingB = new JButton("아이돌 랭킹 보기");
 		JButton musicB = new JButton("음원 차트");
@@ -85,10 +86,10 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		left.add(pname);
 		left.add(pgender);
 		left.add(pmem);
+		left.add(pmname);
 		
 		left.add(psong);
 		left.add(pagency);
-		left.add(pnoname);
 		left.add(enameB);
 		left.add(rankingB);
 		left.add(musicB);
@@ -181,7 +182,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		bottom.add(cancelB = new JButton("초기화"));
 		cancelB.addActionListener(this);
 		
-		Object[] title={"그룹명","보이그룹/걸그룹","멤버수","대표곡","소속사"};
+		Object[] title={"그룹명","보이그룹/걸그룹","멤버수","멤버 구성","대표곡","소속사"};
 		//DefaultTableModel : 테이블의 행과 열을 표현하기 위한 객체
 		table=new JTable(new DefaultTableModel(title, 0));
 		table.setEnabled(false);
@@ -207,6 +208,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		nameTF.setEditable(false);
 		genderTF.setEditable(false);
 		memTF.setEditable(false);
+		mnameTF.setEditable(false);
 		songTF.setEditable(false);
 		agencyTF.setEditable(false);
 	}
@@ -217,6 +219,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			nameTF.setEditable(true);
 			genderTF.setEditable(true);
 			memTF.setEditable(true);
+			mnameTF.setEditable(true);
 			songTF.setEditable(true);
 			agencyTF.setEditable(true);
 			break;
@@ -230,6 +233,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			nameTF.setEditable(true);
 			genderTF.setEditable(true);
 			memTF.setEditable(true);
+			mnameTF.setEditable(true);
 			songTF.setEditable(true);
 			agencyTF.setEditable(true);
 			break;
@@ -240,6 +244,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			nameTF.setEditable(false);
 			genderTF.setEditable(false);
 			memTF.setEditable(false);
+			mnameTF.setEditable(false);
 			songTF.setEditable(false);
 			agencyTF.setEditable(false);
 
@@ -291,6 +296,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		nameTF.setText("");
 		genderTF.setText("");
 		memTF.setText("");
+		mnameTF.setText("");
 		songTF.setText("");
 		agencyTF.setText("");
 	}
@@ -360,6 +366,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			rowData.add(project.getName());
 			rowData.add(project.getGender());
 			rowData.add(project.getMem());
+			rowData.add(project.getMname());
 			rowData.add(project.getSong());
 			rowData.add(project.getAgency());
 		
@@ -367,7 +374,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		}
 	}
 	public void displayAllProjectOrderByAgency() {
-		List<DTO> projectList=DAOClass.getDao().selectAllProjectListOrderByAgency();
+		List<DTO> projectList=DAOClass.getDao().selectAllProjectListOrderByRandom();
 
 		if(projectList.isEmpty()) {
 			JOptionPane.showMessageDialog(this, "저장된 정보가 없습니다.");
@@ -384,6 +391,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			rowData.add(project.getName());
 			rowData.add(project.getGender());
 			rowData.add(project.getMem());
+			rowData.add(project.getMname());
 			rowData.add(project.getSong());
 			rowData.add(project.getAgency());
 		
@@ -442,6 +450,15 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			return;
 		}
 		
+		String mname=mnameTF.getText();
+		
+		String mnameTemp=mnameTF.getText();
+		if(mnameTemp.equals("")) {
+			JOptionPane.showMessageDialog(this, "멤버 구성을 반드시 입력해 주세요.");
+			mnameTF.requestFocus();
+			return;
+		}
+		
 		String song=songTF.getText();
 		
 		if(song.equals("")) {
@@ -470,6 +487,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		project.setName(name);
 		project.setGender(gender);
 		project.setMem(mem);
+		project.setMname(mname);
 		project.setSong(song);
 		project.setAgency(agency);
 		
@@ -507,6 +525,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		nameTF.setText(project.getName());
 		genderTF.setText(project.getGender());
 		memTF.setText(project.getMem());
+		mnameTF.setText(project.getMname());
 		songTF.setText(project.getSong());
 		agencyTF.setText(project.getAgency());
 		
@@ -547,6 +566,15 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			return;
 		}
 		
+		String mname=mnameTF.getText();
+		
+		String mnameTemp=mnameTF.getText();
+		if(mnameTemp.equals("")) {
+			JOptionPane.showMessageDialog(this, "멤버 구성을 반드시 입력해 주세요.");
+			mnameTF.requestFocus();
+			return;
+		}
+		
 		String song=songTF.getText();
 		
 		if(song.equals("")) {
@@ -574,6 +602,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		project.setName(name);
 		project.setGender(gender);
 		project.setMem(mem);
+		project.setMname(mname);
 		project.setSong(song);
 		project.setAgency(agency);
 		

@@ -9,5 +9,5 @@ public interface DAOInterface {
 	DTO selectProject(String name);
 	
 	List<DTO> selectAllProjectList();
-	List<DTO> selectAllProjectListOrderByAgency();
+	List<DTO> selectAllProjectListOrderByRandom();
 }
