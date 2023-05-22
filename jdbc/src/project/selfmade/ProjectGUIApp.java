@@ -199,7 +199,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null, "랜덤 뽑기 성공!");
-				displayAllProjectOrderByAgency();
+				displayAllProjectOrderByRandom();
 			}
 		});
 		//~여기까지
@@ -413,7 +413,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			model.addRow(rowData);
 		}
 	}
-	public void displayAllProjectOrderByAgency() {
+	public void displayAllProjectOrderByRandom() {
 		List<DTO> projectList=DAOClass.getDao().selectAllProjectListOrderByRandom();
 
 		if(projectList.isEmpty()) {
