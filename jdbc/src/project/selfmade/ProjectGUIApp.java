@@ -1,10 +1,14 @@
 package project.selfmade;
 
 import java.awt.Component;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Vector;
 import java.util.regex.Pattern;
@@ -32,7 +36,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 	public static final int SEARCH = 5;
 	
 	JTextField nameTF,genderTF, memTF, songTF, agencyTF;
-	JButton addB,deleteB,updateB,searchB,cancelB,enameB,rankingB;
+	JButton addB,deleteB,updateB,searchB,cancelB,enameB,rankingB,musicB;
 	// 얘는 표(테이블)가 나오게 하기 위한 컴퍼넌트
 	JTable table;
 	
@@ -70,9 +74,12 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		pagency.add(new JLabel("소속사"));
 		pagency.add(agencyTF = new JTextField(10));
 		
+		JPanel pnoname = new JPanel();
+		pnoname.add(new JLabel(""));
 		
 		JButton enameB = new JButton("소속사 정보");
 		JButton rankingB = new JButton("아이돌 랭킹 보기");
+		JButton musicB = new JButton("음원 차트");
 		
 		left.add(pname);
 		left.add(pgender);
@@ -80,8 +87,10 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		
 		left.add(psong);
 		left.add(pagency);
+		left.add(pnoname);
 		left.add(enameB);
 		left.add(rankingB);
+		left.add(musicB);
 		//여기는 새로운 버튼 추가한거
 		enameB.addActionListener(new ActionListener() {
 			
@@ -96,7 +105,53 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
+		rankingB.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(Desktop.isDesktopSupported()) {
+					Desktop desktop = Desktop.getDesktop();
+				try {
+				URI uri = new URI("https://www.idol-chart.com/");
+					desktop.browse(uri);
+				} catch(IOException ex) {
+					ex.printStackTrace();
+				} catch(URISyntaxException ex) {
+					ex.printStackTrace();
+					} 
+				}
+			}
+		});
+		setVisible(true);
+		setSize(1200,480);
+		setResizable(true);
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		musicB.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(Desktop.isDesktopSupported()) {
+					Desktop desktop = Desktop.getDesktop();
+				try {
+				URI uri = new URI("https://vibe.naver.com/chart/total");
+					desktop.browse(uri);
+				} catch(IOException ex) {
+					ex.printStackTrace();
+				} catch(URISyntaxException ex) {
+					ex.printStackTrace();
+					} 
+				}
+			}
+		});
+		setVisible(true);
+		setSize(1200,480);
+		setResizable(true);
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		//~여기까지
+		
 		JPanel bottom = new JPanel();
 		bottom.setLayout(new GridLayout(1,5));
 		
