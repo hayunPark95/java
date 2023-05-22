@@ -155,4 +155,35 @@ public class DAOClass extends Jdbc implements DAOInterface {
 		}
 		return projectList;
 	}
+	
+	@Override
+	public List<DTO> selectAllProjectListOrderByAgency(){
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<DTO> projectList=new ArrayList<DTO>();
+		
+		try {
+			con=getConnection();
+			String sql="SELECT * FROM (SELECT * FROM PROJECT ORDER BY DBMS_RANDOM.VALUE) WHERE ROWNUM <=1";
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+
+			while(rs.next()) {
+				DTO project=new DTO();
+				project.setName(rs.getString("name"));
+				project.setGender(rs.getString("gender"));
+				project.setMem(rs.getString("mem"));
+				project.setSong(rs.getString("song"));
+				project.setAgency(rs.getString("agency"));
+				
+				projectList.add(project);
+			}
+		} catch(SQLException e) {
+			System.out.println("[에러] 모두 검색하기 과정에서의 SQL 오류 >>"+e.getMessage());			
+		} finally {
+			close(con, pstmt, rs);
+		}
+		return projectList;
+	}
 }

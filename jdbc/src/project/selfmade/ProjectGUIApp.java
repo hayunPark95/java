@@ -36,7 +36,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 	public static final int SEARCH = 5;
 	
 	JTextField nameTF,genderTF, memTF, songTF, agencyTF;
-	JButton addB,deleteB,updateB,searchB,cancelB,enameB,rankingB,musicB;
+	JButton addB,deleteB,updateB,searchB,cancelB,enameB,rankingB,musicB,changeB;
 	// 얘는 표(테이블)가 나오게 하기 위한 컴퍼넌트
 	JTable table;
 	
@@ -80,6 +80,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		JButton enameB = new JButton("소속사 정보");
 		JButton rankingB = new JButton("아이돌 랭킹 보기");
 		JButton musicB = new JButton("음원 차트");
+		JButton changeB = new JButton("오늘의 IDOL");
 		
 		left.add(pname);
 		left.add(pgender);
@@ -91,6 +92,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		left.add(enameB);
 		left.add(rankingB);
 		left.add(musicB);
+		left.add(changeB);
 		//여기는 새로운 버튼 추가한거
 		enameB.addActionListener(new ActionListener() {
 			
@@ -150,6 +152,15 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		setResizable(true);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		changeB.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "랜덤 뽑기 성공!");
+				displayAllProjectOrderByAgency();
+			}
+		});
 		//~여기까지
 		
 		JPanel bottom = new JPanel();
@@ -333,6 +344,30 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 	}
 	public void displayAllProject() {
 		List<DTO> projectList=DAOClass.getDao().selectAllProjectList();
+
+		if(projectList.isEmpty()) {
+			JOptionPane.showMessageDialog(this, "저장된 정보가 없습니다.");
+			return;
+		}
+		
+		DefaultTableModel model=(DefaultTableModel)table.getModel();
+		
+		for(int i=model.getRowCount();i>0;i--) {
+			model.removeRow(0);
+		}
+		for(DTO project : projectList) {
+			Vector<Object> rowData=new Vector<>();
+			rowData.add(project.getName());
+			rowData.add(project.getGender());
+			rowData.add(project.getMem());
+			rowData.add(project.getSong());
+			rowData.add(project.getAgency());
+		
+			model.addRow(rowData);
+		}
+	}
+	public void displayAllProjectOrderByAgency() {
+		List<DTO> projectList=DAOClass.getDao().selectAllProjectListOrderByAgency();
 
 		if(projectList.isEmpty()) {
 			JOptionPane.showMessageDialog(this, "저장된 정보가 없습니다.");
