@@ -32,7 +32,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 	public static final int SEARCH = 5;
 	
 	JTextField nameTF,genderTF, memTF, songTF, agencyTF;
-	JButton addB,deleteB,updateB,searchB,cancelB;
+	JButton addB,deleteB,updateB,searchB,cancelB,enameB,rankingB;
 	// 얘는 표(테이블)가 나오게 하기 위한 컴퍼넌트
 	JTable table;
 	
@@ -70,17 +70,35 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 		pagency.add(new JLabel("소속사"));
 		pagency.add(agencyTF = new JTextField(10));
 		
+		
+		JButton enameB = new JButton("소속사 정보");
+		JButton rankingB = new JButton("아이돌 랭킹 보기");
+		
 		left.add(pname);
 		left.add(pgender);
 		left.add(pmem);
 		
 		left.add(psong);
 		left.add(pagency);
+		left.add(enameB);
+		left.add(rankingB);
+		//여기는 새로운 버튼 추가한거
+		enameB.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "1=ADOR   2=YG   3=STARSHIP   4=SOURCE   5=SM   6=BIGHIT   7=PLEDIS   8=YG   9=JYP");
+			}
+		});
+		setVisible(true);
+		setSize(1200,480);
+		setResizable(true);
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
-		// 여기에는 우리가 넣을 버튼에 대한 위치 및 버튼 이름 설정
+		//~여기까지
 		JPanel bottom = new JPanel();
 		bottom.setLayout(new GridLayout(1,5));
-
 		
 		bottom.add(addB = new JButton("삽  입"));
 		addB.addActionListener(this);
@@ -351,7 +369,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			return;
 		}
 		
-		String agencyReg="^[a-Z][가-힣]+$";
+		String agencyReg="^[0-9]+$";
 		if(!Pattern.matches(agencyReg, agency)) {
 			JOptionPane.showMessageDialog(this, "소속사를 형식에 맞게 숫자로 입력해 주세요.");
 			agencyTF.requestFocus();
@@ -455,7 +473,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 			return;
 		}
 		
-		String agencyReg="^[a-Z][가-힣]+$";
+		String agencyReg="^[0-9]+$";
 		if(!Pattern.matches(agencyReg, agency)) {
 			JOptionPane.showMessageDialog(this, "소속사 입력을 형식에 맞게 숫자로 입력해 주세요.");
 			agencyTF.requestFocus();
