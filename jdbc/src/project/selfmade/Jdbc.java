@@ -15,9 +15,9 @@ public abstract class Jdbc {
       pds=PoolDataSourceFactory.getPoolDataSource();
       try {
          pds.setConnectionFactoryClassName("oracle.jdbc.driver.OracleDriver");
-         pds.setURL("jdbc:oracle:thin:@localhost:1521:orcl");
-         pds.setUser("SYSTEM");
-         pds.setPassword("HAYUN");
+         pds.setURL("jdbc:oracle:thin:@www.itwill.xyz:1521:xe");
+         pds.setUser("jdbc_team10");
+         pds.setPassword("jdbc_team10");
          pds.setInitialPoolSize(10);
          pds.setMaxPoolSize(20);
       } catch (SQLException e) {
