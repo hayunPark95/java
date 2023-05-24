@@ -378,7 +378,7 @@ public class ProjectGUIApp extends JFrame implements ActionListener {
 				if (cmd != SEARCH) {
 					setEnable(SEARCH);		
 				}else {
-					searchNameProject();
+					displayAllProject();
 				}
 			} else if (c == cancelB) {
 				displayAllProject();
