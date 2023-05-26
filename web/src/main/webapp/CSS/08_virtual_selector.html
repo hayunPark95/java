@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title>
+<style type="text/css">
+div{
+	font-size: 20px;
+	line-height: 35px;
+}
+
+a{
+	color: orange; 
+	text-decoration: none;
+}
+
+a:link {
+	color: lime;
+}
+a:visited {
+	color: red;
+}
+a:active {
+	color: purple;
+}
+a:hover {
+	color: blue;
+}
+
+ul li:firstchild{color: red;}
+ul li:lastchild{color: green;}
+ul li:nth-child(3){color: yellow;}
+ul li:nth-child(2n){color: silver;}
+ul li:nth-child(2n-1){color: gold;}
+
+input {
+	border: 1px xolid grey;
+}
+input[type='text'] {
+	border: 1px solid maroon;
+}
+input:not[type='text'] {
+	border: 1px solid brown;
+}
+input[type='text']:disabled {
+	border: 1px solid black;
+}
+input[type='text']:checked {
+	border: 1px solid blue;
+}
+input[type='text']:selected {
+	border: 1px solid blue;
+}
+
+input:focus{
+	border: 3px double green;
+}
+</style>
+</head>
+<body>
+	<h1>선택자(Selector)</h1>
+	<hr>
+	<p>가상 선택자: 엘리먼트의 상태에 따라 다른 스타일을 적용하기 위해 사용하는 선택자</p>
+	<hr>
+	<a href="https://www.daum.net">다음</a>&nbsp;&nbsp;&nbsp;
+	<a href="https://m.naver.com">네이버</a>&nbsp;&nbsp;&nbsp;
+	<a href="https://www.google.com">구글</a>&nbsp;&nbsp;&nbsp;
+	<hr>	
+	<ul>
+		<li>홍길동</li>
+		<li>임꺽정</li>
+		<li>전우치</li>
+		<li>일지매</li>
+		<li>장길산</li>
+	</ul>
+	<hr>
+	<table>
+		<tr>
+			<td>아이디</td>
+			<td><input type="text" name="id"></td>
+		</tr>
+		<tr>
+			<td>password</td>
+			<td><input type="password" name="pw"></td>
+		</tr>
+		<tr>
+			<td>이름</td>
+			<td><input type="text" name="name" value="홍길동" disabled="disabled"></td>
+		</tr>
+		<tr>
+			<td>이메일</td>
+			<td><input type="email" name="email" ></td>
+		</tr>						
+	</table>
+</body>
+</html>
