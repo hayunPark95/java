@@ -12,10 +12,11 @@
 		response.sendRedirect(request.getContextPath()+"/index.jsp?group=error&worker=error_400");
 		return;
 	}
-
+ 
 	//전달값을 반환받아 저장
 	String id=request.getParameter("id");
 	String passwd=Utility.encrypt(request.getParameter("passwd"));
+	
 	
 	//전달값(로그인 후 요청할 JSP 문서의 URL 주소)을 반환받아 저장
 	String returnUrl=request.getParameter("returnUrl");
@@ -49,3 +50,9 @@
 		response.sendRedirect(returnUrl);
 	}
 %>
+
+
+
+
+
+
